@@ -1,0 +1,787 @@
+<link href="/hometop/css/bootstrap.css" rel="stylesheet">
+<!--    font-awesome -->
+<!-- <link rel="stylesheet" href="/hometop/css/font-awesome.css"> -->
+<!-- style -->
+<link href="/hometop/css/style.css" rel="stylesheet">
+
+<!--==================================
+=            MAIN SECTION            =
+===================================-->
+<div class="temp-popup-form-wrapper">
+<!--========================================
+=            navigation section            =
+=========================================-->
+<nav class="navbar navbar-inverse temp-custom-navigation">
+  <div class="container-fluid">
+    <div class="navbar-header temp-custom-logo-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="#">弹出式表单</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav navbar-right temp-custom-list-items">
+        <li class="nav-item"><a class="nav-link" href="#" data-toggle="modal" data-target="#RegistrationModal">注册表单</a></li>
+        <li class="nav-item"><a class="nav-link" href="#" data-toggle="modal" data-target="#LogInModal">登录表单</a></li>
+        <li class="nav-item"><a class="nav-link" href="#" data-toggle="modal" data-target="#ContactModal">联系表单</a></li>
+        <li class="nav-item"><a class="nav-link" href="#" data-toggle="modal" data-target="#PaymentModal">支付表单</a></li>
+        <li class="nav-item"><a class="nav-link" href="#" data-toggle="modal" data-target="#ReviewModal">预览表单</a></li>
+        <li class="nav-item"><a class="nav-link" href="#" data-toggle="modal" data-target="#SubscribeModal">订阅表单</a></li>
+        <li class="nav-item"><a class="nav-link" href="#" data-toggle="modal" data-target="#ForgotModal">忘记密码</a></li>
+        <li class="nav-item"><a class="nav-link" href="#" data-toggle="modal" data-target="#ResetModal">重置</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<!--====  End of navigation section  ====-->
+
+ 
+<!--====  End of SETTING SECTION  ====-->
+</div>
+
+
+<!--====  End of MAIN SECTION  ====-->
+
+
+ <!--======================================
+ =            registration form modal            =
+ =======================================-->
+ <!-- Modal -->
+ <div class="modal fade" id="RegistrationModal" role="dialog">
+  <div class="temp-custom-modal-wrap">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content temp-custom-modal-content">
+        <button type="button" class="close temp-custom-close-button" data-dismiss="modal">&times;</button>
+        <div class="modal-body temp-custom-modal-body">
+          <div class="temp-login-form-wrapper">
+            <div class="row custom-row">
+              <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 temp-form-column-wrap-image">
+                <div class="temp-reg-column-wrap-image">
+                  <div class="temp-form-inner-wrapper">
+                    <h2>注册</h2>
+                    <p>如果用户没有帐户，则通过填写给定的表单创建帐户。</p>
+                    <p class="temp-heading-for-icon temp-reg-para">第三方登录</p>
+                    <div class="temp-anchor-wrap temp-reg-anchor-wrap">
+                      <a href="#" class=" temp-anchor text-left">
+                        <span class="temp-social-icon-wrap">
+                          <i class="fa fa-facebook" aria-hidden="true"></i>
+                        </span>
+                        <span>facebook登录</span>
+                      </a>
+                      <a href="#" class="temp-anchor temp-icon-color text-left">
+                        <span class="temp-social-icon-wrap">
+                          <i class="fa fa-google" aria-hidden="true"></i>
+                        </span>
+                        <span>google登录</span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                <div class="temp-form-column-wrap">
+                  <h2>注册</h2>
+                  <form>
+                    <div class="row">
+                      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                          <span class="temp-span-wrap temp-span-input-label-wrap">
+                            <input  class="temp_input_field" type="text" >
+                            <label class="temp_input_label">
+                              <span class="temp_input_label-content">名称</span>
+                            </label>
+                          </span>
+                        </div>
+                      </div>
+                      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                          <span class="temp-span-wrap temp-span-input-label-wrap">
+                            <input class="temp_input_field" type="text" >
+                            <label class="temp_input_label">
+                              <span class="temp_input_label-content">邮箱</span>
+                            </label>
+                          </span>
+                        </div>
+                      </div>
+                      <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
+                        <div class="form-group">
+                          <span class="temp-span-wrap temp-span-input-label-wrap">
+                            <input class="temp_input_field" type="password"  >
+                            <label class="temp_input_label">
+                              <span class="temp_input_label-content">密码</span>
+                            </label>
+                          </span>
+                        </div>
+                      </div>
+                      <div class="col-lg-7 col-md-7 col-sm-7 col-xs-12">
+                        <div class="form-group">
+                          <span class="temp-span-wrap temp-span-input-label-wrap">
+                            <input class="temp_input_field" type="password" >
+                            <label class="temp_input_label">
+                              <span class="temp_input_label-content">确认密码</span>
+                            </label>
+                          </span>
+                        </div>
+                      </div>
+                      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                          <span class="temp-span-wrap temp-span-input-label-wrap">
+                            <input  class="temp_input_field" type="text" >
+                            <label class="temp_input_label">
+                              <span class="temp_input_label-content">手机号码</span>
+                            </label>
+                          </span>
+                        </div>
+                      </div>
+                      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                          <div class="row">
+                            <div class="col-sm-4">
+                              <label class="radio-inline temp-custom-radio-button">
+                                <input type="radio" name="gender" id="femaleRadio" value="Female">女性
+                                <span class="temp-radio-checkmark"></span>
+                              </label>
+                            </div>
+                            <div class="col-sm-4">
+                              <label class="radio-inline temp-custom-radio-button">
+                                <input type="radio" name="gender" id="maleRadio" value="Male">男性
+                                <span class="temp-radio-checkmark"></span>
+                              </label>
+                            </div>
+                            <div class="col-sm-4">
+                              <label class="radio-inline temp-custom-radio-button">
+                                <input type="radio" name="gender" id="uncknownRadio" value="Unknown">未知
+                                <span class="temp-radio-checkmark"></span>
+                              </label>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="temp-login-button-wrap">
+                          <button class="btn btn-info temp-form-button" type="button">提交注册</button>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>  
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>  
+<!--====  End of registration form modal  ====-->
+
+<!--======================================
+=            login form modal            =
+=======================================-->
+<!-- Modal -->
+<div class="modal fade" id="LogInModal" role="dialog">
+  <div class="temp-custom-modal-wrap">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content temp-custom-modal-content">
+        <button type="button" class="close temp-custom-close-button" data-dismiss="modal">&times;</button>
+        <div class="modal-body temp-custom-modal-body">
+          <div class="temp-login-form-wrapper">
+            <div class="row custom-row">
+              <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 temp-form-column-wrap-image">
+                <div class="temp-login-column-wrap-image">
+                  <div class="temp-form-inner-wrapper">
+                    <h2>登录</h2>
+                    <p>如果你有帐户，然后登录。否则，首先创建您的帐户。</p>
+                    <p class="temp-heading-for-icon">第三方登录</p>
+                    <div class="temp-anchor-wrap temp-reg-anchor-wrap">
+                      <a href="#" class=" temp-anchor text-left">
+                        <span class="temp-social-icon-wrap">
+                          <i class="fa fa-facebook" aria-hidden="true"></i>
+                        </span>
+                        <span>facebook登录</span>
+                      </a>
+                      <a href="#" class="temp-anchor temp-icon-color text-left">
+                        <span class="temp-social-icon-wrap">
+                          <i class="fa fa-google" aria-hidden="true"></i>
+                        </span>
+                        <span>google登录</span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                <div class="temp-form-column-wrap">
+                  <h2>登录</h2>
+                  <form>
+                    <div class="form-group">
+                      <span class="temp-span-wrap temp-span-input-label-wrap">
+                        <input class="temp_input_field" type="text"  >
+                        <label class="temp_input_label">
+                          <span class="temp_input_label-content">邮箱</span>
+                        </label>
+                      </span>
+                    </div>
+                    <div class="form-group">
+                      <span class="temp-span-wrap temp-span-input-label-wrap">
+                        <input class="temp_input_field" type="password"  >
+                        <label class="temp_input_label">
+                          <span class="temp_input_label-content">密码</span>
+                        </label>
+                      </span>
+                    </div>
+                    <div class="form-group">
+                      <label class="temp-checkbox-wrap">
+                        <input name="signup_agree_checkbox" value="1" type="checkbox">
+                        记住密码
+                        <span class="checkmark"></span> 
+                      </label>
+                      <label class="pull-right label-content-color custom-form-label2"> 
+                        <a href="#">忘记密码?</a>
+                      </label>
+                    </div>
+                    <div class="temp-login-button-wrap">
+                      <button class="btn btn-info temp-form-button" type="button">提交登录</button>
+                    </div>
+                  </form>
+                </div>  
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--====  End of login form modal  ====-->
+
+<!--==================================
+=            contact form            =
+===================================-->
+<!-- Modal -->
+<div class="modal fade" id="ContactModal" role="dialog">
+  <div class="temp-custom-modal-wrap">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content temp-custom-modal-content">
+        <button type="button" class="close temp-custom-close-button" data-dismiss="modal">&times;</button>
+        <div class="modal-body temp-custom-modal-body">
+          <div class="temp-login-form-wrapper">
+            <div class="row custom-row">
+              <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 temp-form-column-wrap-image">
+                <div class=" temp-contact-column-wrap-image">
+                  <div class="temp-form-inner-wrapper">
+                    <h2>联系我们</h2>
+                    <p>如果你有任何问题，请随时给我写信。只需填写给出的条目并按下按钮即可。</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                <div class="temp-form-column-wrap">
+                  <h2>联系我们</h2>
+                  <form>
+                    <div class="row">
+                      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <div class="form-group">
+                          <span class="temp-span-wrap temp-span-input-label-wrap">
+                            <input class="temp_input_field" type="text"  >
+                            <label class="temp_input_label">
+                              <span class="temp_input_label-content">姓</span>
+                            </label>
+                          </span>
+                        </div>
+                      </div>
+                      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <div class="form-group">
+                          <span class="temp-span-wrap temp-span-input-label-wrap">
+                            <input  class="temp_input_field" type="text"  >
+                            <label class="temp_input_label">
+                              <span class="temp_input_label-content">名</span>
+                            </label>
+                          </span>
+                        </div>
+                      </div>
+                      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                          <span class="temp-span-wrap temp-span-input-label-wrap">
+                            <input  class="temp_input_field" type="text"  >
+                            <label class="temp_input_label">
+                              <span class="temp_input_label-content">标题</span>
+                            </label>
+                          </span>
+                        </div>
+                      </div>
+                      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                          <span class="temp-span-wrap temp-span-input-label-wrap">
+                            <input class="temp_input_field" type="text"  >
+                            <label class="temp_input_label">
+                              <span class="temp_input_label-content">邮箱</span>
+                            </label>
+                          </span>
+                        </div>
+                      </div>
+                      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                          <span class="temp-span-wrap temp-span-input-label-wrap">
+                            <textarea class="temp_input_field temp_textarea_field"></textarea>
+                            <label class="temp_input_label temp-textarea-label">
+                              <span class="temp_input_label-content">留言</span>
+                            </label>
+                          </span>
+                        </div>
+                      </div>
+                      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="temp-login-button-wrap">
+                          <button class="btn btn-info temp-form-button" type="button">提交信息</button>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </div>  
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--====  End of contact form  ====-->
+<!--=====================================
+=            payment section            =
+======================================-->
+<!-- Modal -->
+<div class="modal fade" id="PaymentModal" role="dialog">
+  <div class="temp-custom-modal-wrap">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content temp-custom-modal-content">
+        <button type="button" class="close temp-custom-close-button" data-dismiss="modal">&times;</button>
+        <div class="modal-body temp-custom-modal-body">
+          <div class="temp-login-form-wrapper">
+            <div class="row custom-row">
+              <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 temp-form-column-wrap-image">
+                <div class=" temp-payment-column-wrap-image">
+                  <div class="temp-form-inner-wrapper">
+                    <h2>联系我们</h2>
+                    <p>如果你有任何问题，请随时给我写信。只需填写给出的条目并按下按钮即可。</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                <div class="temp-form-column-wrap">
+                  <h2>付款方式</h2>
+                  <p>请提供下面的帐单和付款信息</p>
+                  <img src="/hometop/images/payment.jpg" alt="background-image" class="img-responsive">
+                  <form>
+                    <div class="row">
+                      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                          <span class="temp-span-wrap temp-span-input-label-wrap">
+                            <input  class="temp_input_field" type="text"  >
+                            <label class="temp_input_label">
+                              <span class="temp_input_label-content">$ 支付金额</span>
+                            </label>
+                          </span>
+                        </div>
+                      </div>
+                      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                          <span class="temp-span-wrap temp-span-input-label-wrap">
+                            <input class="temp_input_field" type="text" >
+                            <label class="temp_input_label">
+                              <span class="temp_input_label-content">持有人姓名</span>
+                            </label>
+                          </span>
+                        </div>
+                      </div>
+                      <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
+                        <select class="form-control temp-custom-select">
+                          <option disabled="" selected=""> 卡片类型</option>
+                          <option value="MasterCard"> MasterCard</option>
+                          <option value="Visa"> Visa</option>
+                          <option value="America Express"> America Express</option>
+                          <option value="Discover"> Discover</option>
+                          <option value="Other"> 其它</option>
+                        </select>
+                      </div>
+                      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
+                        <select class="form-control temp-custom-select">
+                          <option disabled="" selected="">月</option>
+                          <option value="1"> 1 </option>
+                          <option value="2"> 2 </option>
+                          <option value="3"> 3 </option>
+                          <option value="4"> 4 </option>
+                          <option value="5"> 5 </option>
+                          <option value="6"> 6 </option>
+                          <option value="7"> 7 </option>
+                          <option value="8"> 8 </option>
+                          <option value="9"> 9 </option>
+                          <option value="10"> 10 </option>
+                          <option value="11"> 11 </option>
+                          <option value="12"> 12 </option>
+                        </select>
+                      </div>
+                      <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                        <select class="form-control temp-custom-select">
+                          <option disabled="" selected="">年</option>
+                          <option value="2017"> 2017 </option>
+                          <option value="2018"> 2018 </option>
+                          <option value="2019"> 2019 </option>
+                          <option value="2020"> 2020 </option>
+                          <option value="2021"> 2021 </option>
+                          <option value="2022"> 2022 </option>
+                          <option value="2023"> 2023 </option>
+                          <option value="2024"> 2024 </option>
+                          <option value="2025"> 2025 </option>
+                          <option value="2026"> 2026 </option>
+                          <option value="2027"> 2027 </option>
+                        </select>
+                      </div>
+                      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                        <div class="form-group">
+                          <span class="temp-span-wrap temp-span-input-label-wrap">
+                            <input class="temp_input_field" type="text"  >
+                            <label class="temp_input_label">
+                              <span class="temp_input_label-content">CVV</span>
+                            </label>
+                          </span>
+                        </div>
+                      </div>
+                      <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                        <div class="form-group">
+                          <span class="temp-span-wrap temp-span-input-label-wrap">
+                            <input class="temp_input_field" type="text"  >
+                            <label class="temp_input_label">
+                              <span class="temp_input_label-content">卡号</span>
+                            </label>
+                          </span>
+                        </div>
+                      </div>
+                      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="temp-login-button-wrap">
+                          <button class="btn btn-info temp-form-button" type="button">提交订单</button>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </div>  
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--====  End of payment section  ====-->
+<!--====================================
+=            review section            =
+=====================================-->
+<!-- Modal -->
+<div class="modal fade" id="ReviewModal" role="dialog">
+  <div class="temp-custom-modal-wrap">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content temp-custom-modal-content">
+        <button type="button" class="close temp-custom-close-button" data-dismiss="modal">&times;</button>
+        <div class="modal-body temp-custom-modal-body">
+          <div class="temp-login-form-wrapper">
+            <div class="row custom-row row-eq-height">
+              <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 temp-form-column-wrap-image">
+                <div class=" temp-review-column-wrap-image">
+                  <div class="temp-form-inner-wrapper">
+                    <h2>评论</h2>
+                    <p>我们希望听到更多的访问者。你的反馈将帮助我们了解我们做得好的地方和我们能改进的地方。</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                <div class="temp-form-column-wrap">
+                  <h2>评论</h2>
+                  <form>
+                    <div class="row">
+                      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                          <span class="temp-span-wrap temp-span-input-label-wrap">
+                            <input class="temp_input_field" type="text"  >
+                            <label class="temp_input_label">
+                              <span class="temp_input_label-content">用户名</span>
+                            </label>
+                          </span>
+                        </div>
+                      </div>
+                      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                          <span class="temp-span-wrap temp-span-input-label-wrap">
+                            <input class="temp_input_field" type="text"  >
+                            <label class="temp_input_label">
+                              <span class="temp_input_label-content">邮箱</span>
+                            </label>
+                          </span>
+                        </div>
+                      </div>
+                      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                          <span class="temp-span-wrap temp-span-input-label-wrap">
+                            <textarea class="temp_input_field temp_textarea_field" ></textarea>
+                            <label class="temp_input_label temp-textarea-label">
+                              <span class="temp_input_label-content">你的评论</span>
+                            </label>
+                          </span>
+                        </div>
+                      </div>
+                      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="temp-login-button-wrap">
+                          <button class="btn btn-info temp-form-button" type="button">提交评论</button>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </div>  
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--====  End of review section  ====-->
+<!--====================================
+=            subscribe form            =
+=====================================-->
+<!-- Modal -->
+<div class="modal fade" id="SubscribeModal" role="dialog">
+  <div class="temp-custom-modal-wrap">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content temp-custom-modal-content">
+        <button type="button" class="close temp-custom-close-button" data-dismiss="modal">&times;</button>
+        <div class="modal-body temp-custom-modal-body">
+          <div class="temp-login-form-wrapper">
+            <div class="row custom-row row-eq-height">
+              <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 temp-form-column-wrap-image ">
+                <div class="temp-subscribe-column-wrap-image">
+                  <div class="temp-form-inner-wrapper">
+                    <h2>你好世界</h2>
+                    <p>加入我们的时事通讯，每周收到收件箱里的新闻！</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                <div class="temp-form-column-wrap temp-subscribe-form-column-wrap">
+                  <h2>订阅</h2>
+                  <form>
+                    <div class="row">
+                      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                          <span class="temp-span-wrap temp-span-input-label-wrap">
+                            <input  class="temp_input_field" type="text" >
+                            <label class="temp_input_label">
+                              <span class="temp_input_label-content">邮箱</span>
+                            </label>
+                          </span>
+                        </div>
+                      </div>
+                      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <div class="form-group">
+                          <label class="radio-inline temp-custom-radio-button temp-radio-button-subscribe">
+                            <input type="radio" name="category" id="travelRadio" value="Travel"> Travel
+                            <span class="temp-radio-checkmark"></span>
+                          </label>
+                          <label class="radio-inline temp-custom-radio-button temp-radio-button-subscribe">
+                            <input type="radio" name="category" id="MagazineRadio" value="Magazine">Magazine
+                            <span class="temp-radio-checkmark"></span>
+                          </label>
+                          <label class="radio-inline temp-custom-radio-button temp-radio-button-subscribe">
+                            <input type="radio" name="category" id="Checked-OptionRadio" value="Checked Option">Checked Option
+                            <span class="temp-radio-checkmark"></span>
+                          </label>
+                          <label class="radio-inline temp-custom-radio-button temp-radio-button-subscribe">
+                            <input type="radio" name="category" id="Disabled-OptionRadio" value="Disabled Option">Disabled Option
+                            <span class="temp-radio-checkmark"></span>
+                          </label>
+                        </div>
+                      </div>
+                      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <div class="form-group">
+                          <label class="temp-checkbox-wrap temp-subscribe-checkbox">
+                            <input name="signup_agree_checkbox" value="1" type="checkbox">
+                            Chefs' Kitchen
+                            <span class="checkmark"></span> 
+                          </label>
+                          <label class="temp-checkbox-wrap temp-subscribe-checkbox">
+                            <input name="signup_agree_checkbox" value="1" type="checkbox">
+                            Healing Flavors
+                            <span class="checkmark"></span> 
+                          </label>
+                          <label class="temp-checkbox-wrap temp-subscribe-checkbox">
+                            <input name="signup_agree_checkbox" value="1" type="checkbox">
+                            Checked Option
+                            <span class="checkmark"></span> 
+                          </label>
+                          <label class="temp-checkbox-wrap temp-subscribe-checkbox">
+                            <input name="signup_agree_checkbox" value="1" type="checkbox">
+                            Disabled Option
+                            <span class="checkmark"></span> 
+                          </label>
+                        </div>
+                      </div>
+                      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="temp-login-button-wrap">
+                          <button class="btn btn-info temp-form-button" type="button">订阅</button>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </div>  
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--====  End of subscribe form  ====-->
+<!--==========================================
+=            forget password form            =
+===========================================-->
+<!-- Modal -->
+<div class="modal fade" id="ForgotModal" role="dialog">
+  <div class="temp-custom-modal-wrap">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content temp-custom-modal-content">
+        <button type="button" class="close temp-custom-close-button" data-dismiss="modal">&times;</button>
+        <div class="modal-body temp-custom-modal-body">
+          <div class="temp-login-form-wrapper">
+            <div class="row custom-row">
+              <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 temp-form-column-wrap-image">
+                <div class=" temp-forget-password-column-wrap-image">
+                  <div class="temp-form-inner-wrapper">
+                    <h2>忘记密码?</h2>
+                    <p>
+                      请提供您注册时使用的用户名或电子邮件地址。我们会给你发一封电子邮件，允许你重设密码。
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                <div class="temp-form-column-wrap">
+                  <h2>忘记密码?</h2>
+                  <form>
+                    <div class="row">
+                      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                          <span class="temp-span-wrap temp-span-input-label-wrap">
+                            <input  class="temp_input_field" type="text" >
+                            <label class="temp_input_label">
+                              <span class="temp_input_label-content">邮箱</span>
+                            </label>
+                          </span>
+                        </div>
+                      </div>
+                      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="temp-login-button-wrap">
+                          <button class="btn btn-info temp-form-button" type="button">提交发送</button>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </div>  
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--====  End of forget password form  ====-->
+<!--========================================
+=            reset form section            =
+=========================================-->
+<!-- Modal -->
+<div class="modal fade" id="ResetModal" role="dialog">
+  <div class="temp-custom-modal-wrap">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content temp-custom-modal-content">
+        <button type="button" class="close temp-custom-close-button" data-dismiss="modal">&times;</button>
+        <div class="modal-body temp-custom-modal-body">
+          <div class="temp-login-form-wrapper">
+            <div class="row custom-row">
+              <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 temp-form-column-wrap-image">
+                <div class=" temp-reset-password-column-wrap-image">
+                  <div class="temp-form-inner-wrapper">
+                    <h2>重置密码</h2>
+                    <p>您只需填写给定的条目并设置新密码即可更改密码。</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                <div class="temp-form-column-wrap">
+                  <h2>重置密码</h2>
+                  <form>
+                    <div class="row">
+                      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                          <span class="temp-span-wrap temp-span-input-label-wrap">
+                            <input class="temp_input_field" type="password"  >
+                            <label class="temp_input_label">
+                              <span class="temp_input_label-content">当前密码</span>
+                            </label>
+                          </span>
+                        </div>
+                      </div>
+                      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                          <span class="temp-span-wrap temp-span-input-label-wrap">
+                            <input class="temp_input_field" type="password" >
+                            <label class="temp_input_label">
+                              <span class="temp_input_label-content">新密码</span>
+                            </label>
+                          </span>
+                        </div>
+                      </div>
+                      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                          <span class="temp-span-wrap temp-span-input-label-wrap">
+                            <input class="temp_input_field" type="password"  >
+                            <label class="temp_input_label">
+                              <span class="temp_input_label-content">确认密码</span>
+                            </label>
+                          </span>
+                        </div>
+                      </div>
+                      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="temp-login-button-wrap">
+                          <button class="btn btn-info temp-form-button" type="button">重置密码</button>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </div>  
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--====  End of reset form section  ====-->
+<!--====  End of content of popup form  ====-->
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="/hometop/js/jquery.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="/hometop/js/bootstrap.js"></script>
+<!-- custom js link -->
+<script src="/hometop/js/form.js"></script>

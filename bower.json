@@ -1,0 +1,18 @@
+{
+  "name": "collecting-system",
+  "description": "",
+  "main": "app.js",
+  "license": "ISC",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^3.3.1"
+  }
+}
