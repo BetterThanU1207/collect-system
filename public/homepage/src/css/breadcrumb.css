@@ -1,0 +1,22 @@
+﻿#ribbon {
+    overflow: hidden;
+    padding: 15px 15px 0 15px;
+    position: relative;
+}
+
+    #ribbon a {
+        color: #777 !important;
+        text-decoration: none !important;
+    }
+
+    #ribbon .breadcrumb {
+        display: inline-block;
+        margin: 0;
+        padding: 0;
+        background: none;
+        vertical-align: top;
+    }
+
+.breadcrumb {
+    list-style: none;
+}

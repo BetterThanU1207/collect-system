@@ -1,0 +1,8 @@
+﻿#toolbar1.mini-toolbar {
+    padding: 20px 15px 20px 15px;
+    border: none;
+    background: #fff;
+}
+    #toolbar1.mini-toolbar .mini-button-menu {
+    display:none;
+    }

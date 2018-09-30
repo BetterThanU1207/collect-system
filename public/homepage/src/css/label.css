@@ -1,0 +1,12 @@
+﻿.header-menu .label {
+    position: absolute;
+    top: 9px;
+    right: 7px;
+    text-align: center;
+    font-size: 9px;
+    padding: 2px 3px;
+    line-height: .9;
+}
+.label-info {
+    background-color: #3498db !important
+}

@@ -1,0 +1,205 @@
+﻿.menu-collapse .sidemenu,
+.sidemenu.menu-collapse {
+    width: 50px;
+}
+
+.menu-collapse .sidemenu-arrow,
+.menu-collapse .sidemenu-text {
+    display: none;
+}
+
+
+
+.menu-collapse .sidemenu-item,
+.menu-collapse .sidemenu-item > .sidemenu-icon,
+.menu-collapse.sidemenu >  ul > li > ul > li > .sidemenu-item,
+.menu-collapse.sidemenu >  ul > li > ul > li > ul > li > .sidemenu-item,
+.menu-collapse .sidemenu >  ul > li > ul > li > .sidemenu-item,
+.menu-collapse .sidemenu >  ul > li > ul > li > ul > li > .sidemenu-item {
+    text-align: center;
+    padding: 0;
+}
+
+/*只能向下选择*/
+.menu-collapse li > ul > li.meun-had > .sidemenu-item {
+    display: none;
+}
+/*.menu-collapse  ul + .sidemenu-item{
+    display: none !important;   
+}*/
+.menu-collapse.sidemenu >  ul > li > .sidemenu-item.open + ul > li > ul,
+.menu-collapse > .sidemenu >  ul > li > .sidemenu-item.open + ul > li > ul {
+    display: block;
+}
+
+.sidemenu {
+    position: relative;
+    width: 200px;
+    background: #42485b;
+    color: #fff;
+    cursor: pointer;
+    /*overflow-y: hidden;*/
+    user-select: none;
+    box-shadow: 1px 0 20px rgba(0,0,0,0.08);
+}
+
+
+.menu-btn {
+    height: 30px;
+    line-height: 30px;
+    color: #aeb9c2;
+    background-color: #4a5064;
+    font-size: 14px;
+    text-align: center;
+}
+
+    .menu-btn .fa {
+        margin-top: 10px;
+    }
+
+    .menu-btn:hover .fa {
+        color: #fff;
+    }
+
+.menu-collapse .menu-btn .fa {
+    transform: rotate(-180deg);
+    -ms-transform: rotate(-180deg);
+}
+
+.menu-content {
+    overflow-y: hidden;
+}
+
+.sidemenu-item {
+    display: block;
+    line-height: 36px;
+    height: 36px;
+    user-select: none;
+    -ms-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+}
+
+.sidemenu-text {
+    font-size: 12px;
+    font-family: 微软雅黑,宋体,Arial,Helvetica,Verdana,sans-serif;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+}
+
+.sidemenu-arrow {
+    position: absolute;
+    right: 0px;
+}
+
+    .sidemenu-arrow:after {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        content: "\f104";
+        font-size: 14px;
+    }
+
+.sidemenu-item.open > .sidemenu-arrow:after {
+    right: 8px;
+    content: "\f107";
+}
+
+.sidemenu-item .sidemenu-icon {
+    height: 36px;
+    line-height: 36px;
+    padding: 0 10px 0 0;
+}
+
+.sidemenu >  ul > li ul {
+    padding-top: 5px;
+}
+
+.sidemenu-item.open + ul {
+    display: block;
+}
+
+.sidemenu >  ul > li > .sidemenu-item:hover {
+    background: #00C1DE;
+}
+
+.sidemenu >  ul > li > ul .sidemenu-item:hover {
+    background: #4a5064;
+}
+
+/*全局*/
+ul, li {
+    list-style: none;
+}
+
+ul {
+    padding: 0;
+    margin: 0;
+}
+
+    ul > li > ul {
+        display: none;
+        background-color: #333744;
+    }
+
+.sidemenu >  ul > li > .sidemenu-item {
+    padding: 0 15px;
+}
+
+.sidemenu >  ul > li > ul > li > .sidemenu-item {
+    padding: 0 0 0 40px;
+}
+
+.sidemenu >  ul > li > ul > li > ul > li > .sidemenu-item {
+    padding: 0 0 0 60px;
+}
+
+.tooltip {
+    left: 55px;
+    display: none;
+    padding: 0 5px;
+    margin-left: 3px;
+    position: absolute;
+    z-index: 1070;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 30px;
+    text-align: left;
+    text-align: start;
+    text-decoration: none;
+    text-shadow: none;
+    text-transform: none;
+    letter-spacing: normal;
+    word-break: normal;
+    word-spacing: normal;
+    word-wrap: normal;
+    white-space: normal;
+    /*filter: alpha(opacity=0);
+    opacity: 0;*/
+    line-break: auto;
+}
+
+.tooltip-arrow {
+    position: absolute;
+    width: 0px;
+    height: 0px;
+    border-color: transparent;
+    border-style: solid;
+    top: 50%;
+    left: 0px;
+    margin-top: -5px;
+    border-width: 6px 6px 6px 0;
+    border-right-color: #000;
+}
+
+.tooltip-inner {
+    min-width: 80px;
+    max-width: 500px;
+    padding: 3px 8px;
+    color: #fff;
+    text-align: center;
+    background-color: #000;
+}

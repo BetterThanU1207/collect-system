@@ -1,0 +1,69 @@
+﻿.mini-textbox {
+    height: 31px;
+}
+
+.mini-buttonedit-border,
+.mini-textbox-border {
+    height: 17px;
+    /*overflow: visible !important;*/
+    padding: 6px 12px;
+    background: white;
+    border-color: #ccc;
+    border-radius: 0px;
+}
+
+.mini-textarea .mini-textbox-border {
+    padding: 0px;
+}
+
+.mini-textbox-focus .mini-textbox-border {
+    /*background-color: #fff;*/
+    border-color: #3c8dbc;
+    outline: 0;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .6);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .6);
+}
+
+body .mini-error .mini-textbox-border,
+body .mini-error .mini-buttonedit-border,
+body .mini-error .mini-textboxlist-border {
+    border-color: #ffa8a8;
+    background-color: #fff3f3;
+}
+
+.mini-error .mini-textbox-border {
+    margin-right: 0px;
+}
+
+.mini-error .mini-errorIcon {
+    display: none;
+}
+
+.mini-textbox-input {
+    height:17px;
+    color: #999;
+}
+
+.mini-buttonedit-buttons {
+    top: 6px;
+}
+
+.form-group {
+    display: inline-block;
+    padding:6px 10px;
+}
+
+    .form-group .form-label {
+        padding-left:3px;
+        padding-right: 10px;
+        display: inline-block;
+        text-decoration: none;
+        font-weight: bold;
+        color: #333;
+        font-size: 12px;
+    }
+    .form-group .mini-textbox {
+    padding-right:20px;
+    }
+
+

@@ -1,0 +1,118 @@
+﻿
+/* grid
+
+==========================================*/
+.mini-panel-border.mini-grid-border {
+    border-color: none !important;
+    /*border-radius: 3px;*/
+}
+
+
+html body .mini-grid-row-hover {
+    background: #fff;
+}
+
+html body .mini-grid-row-selected {
+    background: #f4f4f4;
+}
+
+html body .mini-grid .mini-grid-cell-selected {
+    background: #dedede;
+}
+
+.mini-grid-border {
+    border: none;
+    border-radius: 0px;
+}
+
+.mini-grid-header {
+    background: #fff;
+}
+
+.mini-grid-columns {
+    border-top: 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.mini-grid .mini-grid-rightCell {
+    border-right-width: 0px;
+}
+/*body .mini-grid-headerCell-nowrap {
+    font-size: 14px;
+}*/
+.mini-checkcolumn > .mini-grid-cell-inner,
+.mini-checkcolumn .mini-grid-headerCell-inner {
+    padding: 0px;
+}
+
+.mini-grid-headerCell-inner {
+    font-weight: bold;
+}
+
+.mini-grid-cell-inner,
+.mini-grid-headerCell-inner {
+    font-family: 'Source Sans Pro','Helvetica Neue',Helvetica,Arial,sans-serif;
+    padding: 8px;
+    line-height: 24px;
+    vertical-align: top;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: #333;
+    /*font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.42857143;
+    text-align: left;
+    padding: 8px;*/
+}
+
+    .mini-grid-cell-inner > a {
+        text-decoration: none;
+    }
+
+.mini-grid-headerCell,
+.mini-grid-topRightCell,
+.mini-grid-columnproxy {
+    background: #f8f8f8;
+    border-color: #fff;
+}
+
+.mini-grid-row-selected > .mini-grid-cell {
+    border-color: #f4f4f4;
+}
+
+.mini-grid-cell {
+    border-color: #fff;
+}
+
+.mini-pager {
+    height: 34px !important;
+    line-height: 34px;
+}
+
+.mini-grid-footer,
+.mini-grid-pager,
+.mini-grid-filterRow {
+    border-color: #ddd;
+    background: #fbfbfb;
+}
+
+/*.mini-grid-desc .mini-grid-sortIcon,
+.mini-grid-asc .mini-grid-sortIcon {
+    background-position: -7px -5px;
+}*/
+
+.mini-grid-desc .mini-grid-sortIcon,
+.mini-grid-asc .mini-grid-sortIcon {
+    background-position: -19px -0px
+}
+
+.mini-grid-allowsort {
+    height: 12px;
+    background-image: url('../../photo/spinner.png');
+}
+
+/*.mini-grid-sortIcon {
+    height: 12px;
+    background: url('../../photo/spinner.png') no-repeat -7px -5px;
+}*/

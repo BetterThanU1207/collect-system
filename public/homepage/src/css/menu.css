@@ -1,0 +1,105 @@
+﻿
+.mini-menu-open .mini-menu-border {
+    border-color: #eee;
+}
+
+.mini-menu-open .mini-menuitem-inner {
+    padding: 3px 20px;
+}
+
+.mini-menu-open .mini-menuitem-text {
+    color: #777;
+}
+
+    .mini-menu-open .mini-menuitem-text .fa,
+    .mini-menu-open .mini-menuitem-text li {
+        padding: 0 5px;
+    }
+
+
+.mini-menu-open .mini-menuitem-hover {
+    background: #e1e3e9;
+    border: 1px solid #e1e3e9;
+}
+
+    .mini-menu-open .mini-menuitem-hover .mini-menuitem-text {
+        color: #333
+    }
+
+
+.header-menu .mini-menu {
+    background: inherit;
+    font-size: 12px;
+    font-family: Tahoma, Verdana, 宋体;
+}
+
+.header-menu .mini-menu-horizontal .mini-menu-border {
+    background: inherit;
+    border: none;
+}
+
+.header-menu .mini-menu-horizontal .mini-menu-inner {
+    color: #fff;
+    background: inherit;
+}
+
+.header-menu .mini-menuitem-text, .mini-menuitem-text a {
+    color: #fff;
+}
+
+.header-menu,
+.header-menu .mini-menu,
+.header-menu .mini-menu-inner,
+.header-menu .mini-menu-border,
+.header-menu .mini-menuitem {
+    height: 50px !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+
+    .header-menu .mini-menu-horizontal .mini-menuitem-inner {
+        height: 50px !important;
+        padding: 0 15px;
+    }
+
+    .header-menu .mini-menuitem-inner {
+        line-height: 50px;
+        height: 50px;
+    }
+
+
+    .header-menu .mini-menuitem.mini-menuitem-hover,
+    .header-menu .mini-menuitem.mini-menu-popup {
+        border: none;
+        background: #555299;
+    }
+
+
+    .header-menu .mini-menuitem-text {
+        line-height: 50px;
+        height: 50px;
+        font-size: 14px;
+    }
+
+    .header-menu .mini-menu-horizontal .mini-menuitem-text {
+        padding: 0;
+    }
+
+    .header-menu .mini-menuitem-text img {
+        vertical-align: middle;
+        height: 35px;
+        width: 35px;
+        border-radius: 50%;
+    }
+
+    .header-menu .mini-menuitem-allow {
+        display: none !important;
+    }
+
+/*.mini-menu.mini-menu-open,
+.mini-shadow {
+    box-shadow: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+}*/

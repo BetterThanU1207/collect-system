@@ -51,7 +51,7 @@ app.use(function (req, res, next) {
   console.log(url);
   console.log(req.session.user);
   if (url != "/" && url != "/ajax/login" && !req.session.user){
-    return res.redirect('/');
+    // return res.redirect('/');
   };
   next();
 })
@@ -59,6 +59,8 @@ app.use(function (req, res, next) {
 app.use('/', indexRouter);  // 即为为路径 / 设置路由
 //app.use('/login',indexRouter); // 即为为路径 /home 设置路由
 app.use('/home',indexRouter); // 即为为路径 /home 设置路由
+app.use('/showtable.html',indexRouter);
+app.use('/edittable.html',indexRouter);
 app.use("/logout",indexRouter); // 即为为路径 /logout 设置路由
 
 app.use('/users', usersRouter); // 即为为路径 /users 设置路由

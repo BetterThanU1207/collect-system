@@ -1,37 +1,93 @@
-<% include header.html %>
-<link rel="stylesheet" href="/stylesheets/homestyle.css">
-<div class="container-fluid">
-    <div class="row clearfix">
-        <div class="col-md-12 column">
-            <h2 class="text-left" style="font-size:36px;">智能水表集抄系统</h2>
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>
+        <%= title %>
+    </title>
+
+
+    <script src="/homepage/src/jquery.min.js"></script>
+
+    <link href="/homepage/src/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="/homepage/src/skin.css" rel="stylesheet" />
+    <link href="/homepage/src/menu/sidemenu.css" rel="stylesheet" />
+
+    <script src="/homepage/data/menudata.js"></script>
+    <script src="/homepage/src/menu/sidemenu.js"></script>
+
+    <style>
+        .main {
+            background: #fff;
+            position: absolute;
+            float: left;
+            left: 200px;
+            right: 0px;
+            top: 50px;
+            bottom: 0px;
+            padding: 8px;
+            transition-duration: 0.3s;
+            transition-timing-function: ease;
+            -webkit-transition-duration: 0.3s;
+            -webkit-transition-timing-function: ease;
+        }
+
+        .collapse .main {
+            left: 50px;
+            transition-duration: 0.3s;
+            transition-timing-function: ease;
+            -webkit-transition-duration: 0.3s;
+            -webkit-transition-timing-function: ease;
+        }
+
+        .mymenu .mini-menu-float {
+            display: inline-block;
+            /* float: right; */
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="header">
+
+        <div class="logo">
+            <img src="/homepage/photo/user2-160x160.jpg" /><span>Admin</span>
         </div>
-    </div>
-    <div class="row clearfix">
-        <div class="col-md-2 column">
-            <% include leftmenu.html %>
+
+        <div class="header-tabs">
+            <ul>
+                <li>
+                    <div class="tabs-item"><i class="fa fa-dashboard"></i>控制台</div>
+                </li>
+            </ul>
+
         </div>
-        <div class="col-md-10 column">
-            <div class="row clearfix">
-                <div class="col-md-12 column">
-                    <h2>综合信息展示</h2>
-                </div>
+
+
+        <div class="header-menu">
+            <div class="cc-info" style="font-size:16px;">
+                <a href="#" onclick="logout()" style="float: right;margin-left: 20px;margin-right: 100px;color: black;">注销</a>
+                <a href="#" onclick="modifyPwd()" style="float: right;margin-left: 20px;color: black;">修改密码</a>
+                <a href="#" onclick="window.open('/城市供水管理服务平台用户手册.doc')" style="float: right;margin-left: 50px;color: black;">帮助</a>
             </div>
-            <div class="row clearfix">
-                <div class="col-md-1 column">
-                    <p>资源树</p>
-                </div>
-                <div class="col-md-11 column">
-                    <% include showtable.html %>
-                </div>
-            </div>
         </div>
     </div>
-    <div class="row clearfix">
-        <div class="col-md-12 column">
-            <footer>
-                <p class="text-center">Copyright©2018-2020 济宁金水科技有限公司 </p>
-            </footer>
-        </div>
+
+    <div id="menu" class="main-sidebar"></div>
+
+
+    <div class="main">
+        <iframe id="mainframe" src="./showtable.html" frameborder="0" name="main" style="width:100%;height:100%;padding:0"></iframe>
     </div>
-</div>
-<% include footer.html %>
+</body>
+
+</html>
+<script>
+    $("#menu").sidemenu({
+        data: menuData,
+    });
+</script>
