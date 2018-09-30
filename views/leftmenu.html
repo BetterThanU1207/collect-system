@@ -7,77 +7,109 @@
     <div id="ensconce">
         <h2>
             <img src="/images/show.png" alt="">
-            国内各地景点
+            导航菜单
         </h2>
     </div>
 
     <!--显示菜单-->
     <div id="open">
         <div class="navH">
-            国内各地景点
+            导航菜单
             <span><img class="obscure" src="/images/obscure.png" alt=""></span>
         </div>
         <div class="navBox">
             <ul>
                 <li>
-                    <h2 class="obtain">北京景点<i></i></h2>
+                    <h2 class="obtain">档案管理<i></i></h2>
                     <div class="secondary">
-                        <h3>故宫</h3>
-                        <h3>十三陵</h3>
-                        <h3>圆明园</h3>
-                        <h3>长城</h3>
-                        <h3>雍和宫</h3>
-                        <h3>天坛公园</h3>
+                        <h3>用户信息</h3>
+                        <h3>用户变更</h3>
+                        <h3>水表信息</h3>
+                        <h3>换表信息</h3>
+                        <h3>集抄器信息</h3>
                     </div>
                 </li>
                 <li>
-                    <h2 class="obtain">南京景点<i></i></h2>
+                    <h2 class="obtain">抄表管理<i></i></h2>
                     <div class="secondary">
-                        <h3>栖霞寺</h3>
-                        <h3>夫子庙</h3>
-                        <h3>海底世界</h3>
-                        <h3>中山陵</h3>
-                        <h3>乌衣巷</h3>
-                        <h3>音乐台</h3>
+                        <h3>抄表数据管理</h3>
+                        <h3>抄表数据审核</h3>
+                        <h3>账单数据查询</h3>
                     </div>
                 </li>
                 <li>
-                    <h2 class="obtain">上海景点<i></i></h2>
+                    <h2 class="obtain">统计查询<i></i></h2>
                     <div class="secondary">
-                        <h3>东方明珠</h3>
-                        <h3>外滩</h3>
-                        <h3>豫园</h3>
-                        <h3>文庙</h3>
-                        <h3>世博园</h3>
-                        <h3>田子坊</h3>
+                        <h3>综合查询</h3>
+                        <h3>用水量统计</h3>
+                        <h3>水费分类统计</h3>
                     </div>
                 </li>
                 <li>
-                    <h2 class="obtain">深圳景点<i></i></h2>
+                    <h2 class="obtain">短信管理<i></i></h2>
                     <div class="secondary">
-                        <h3>华侨城</h3>
-                        <h3>观澜湖</h3>
-                        <h3>世界之窗</h3>
-                        <h3>东门老街</h3>
-                        <h3>七娘山</h3>
-                        <h3>光明农场</h3>
-                    </div>
-                </li>
-                <li>
-                    <h2 class="obtain">广州景点<i></i></h2>
-                    <div class="secondary">
-                        <h3>白云山</h3>
-                        <h3>长隆</h3>
-                        <h3>黄花岗公园</h3>
-                        <h3>中山纪念堂</h3>
-                        <h3>华南植物园</h3>
-                        <h3>南沙湿地公园</h3>
+                        <h3>短信模板设置</h3>
+                        <h3>短信群发记录</h3>
+                        <h3>短信群发设置</h3>
                     </div>
                 </li>
             </ul>
         </div>
     </div>
 </div>
+<script>
+//加载导航菜单栏
+$(function() {
+    $.ajax({        
+        url : '/ajax/menu',
+        async : false,
+        type : "GET",
+        // dataType : "jsonp", // 返回的数据类型，设置为JSONP方式
+        // jsonp : 'callback', //指定一个查询参数名称来覆盖默认的 jsonp 回调参数名 callback
+        // jsonpCallback: 'handleResponse', //设置回调函数名
+        // data : {
+        //     level : level
+        // },
+        success : function(data) {
+            console.log('取数成功');
+            console.log(data);
+            $.each(data, function(i, n) {
+                if (n.parentID == "0") {//加载父类节点即一级菜单
+                    var content = '<div title="'+n.name+'" style="overflow: hidden;padding: 0px;">';
+                    $.each(data, function (j, m) {
+                        if(m.parentID == n.id){                          
+                            content += '<a id="alink" hrefs="'+m.url+'" class="easyui-linkbutton" target="iframe" style="width:100%;text-align:left" data-options="iconCls:'+"'"+m.IconCls+"'"+'">' +m.name+'</a><br/>';                           
+                        }
+                    })
+                    content += '</div>'; 
+                    console.log(content);                   
+                    if (i == 0) {//默认显示第一个一级菜单下的二级菜单
+                        $('#layout_west_accordion').accordion('add', {
+                            title : n.name,
+                            iconCls : n.IconCls,
+                            selected : true,
+                            content : content,                            
+                        });
+                    } 
+                    else {
+                        $('#layout_west_accordion').accordion('add', {
+                            title : n.name,
+                            iconCls : n.IconCls,
+                            selected : false,
+                            content : content,                            
+                        });
+                    }
+                }
+            });
+        },
+        error:function(XMLHttpRequest){
+            console.log(XMLHttpRequest.responseText);
+            console.log(XMLHttpRequest.status);
+            console.log(XMLHttpRequest.readyState);
+        }
+    });
+})
+</script>
 <!--rem适配js-->
 <script src="/javascripts/leftmenuadapter.js"></script>
 <!--控制js-->
