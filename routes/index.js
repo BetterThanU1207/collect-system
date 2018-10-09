@@ -48,11 +48,11 @@ router.get("/home", function (req, res) {
 			}
 			//把data对象转换为json格式字符串
 			var content = "var menuData = " + JSON.stringify(datalist);
-			console.log(content);
+			//console.log(content);
 			// 写入文件内容（如果文件不存在会创建一个文件）
 			// 写入时会先清空文件
 
-			fs.writeFile('./public/homepage/data/menudata.js', content, function (err) {
+			fs.writeSync(fs.openSync('./public/homepage/data/menudata.js','w'), content, function (err) {
 				if (err) {
 					throw err;
 				}
@@ -62,12 +62,12 @@ router.get("/home", function (req, res) {
 					if (err) {
 						throw err;
 					}
-					console.log(data);
+					//console.log(data);
 				});
 			});
 		}
 	});
-	res.render("home", { title: 'Home' });         //已登录则渲染home页面
+	res.render("home", { title: '智能水表集抄系统' });         //已登录则渲染home页面
 });
 
 router.get('/showtable.html', function (req, res, next) {

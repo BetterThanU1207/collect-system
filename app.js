@@ -51,7 +51,7 @@ app.use(function (req, res, next) {
   console.log(url);
   console.log(req.session.user);
   if (url != "/" && url != "/ajax/login" && !req.session.user){
-    // return res.redirect('/');
+    return res.redirect('/');
   };
   next();
 })

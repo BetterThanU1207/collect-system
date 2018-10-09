@@ -1,9 +1,9 @@
 {
   "name": "collecting-system",
-  "description": "",
+  "description": "前端依赖包",
   "main": "app.js",
   "license": "ISC",
-  "homepage": "",
+  "homepage": "https://github.com/BetterThanU1207/-",
   "private": true,
   "ignore": [
     "**/.*",
@@ -14,5 +14,8 @@
   ],
   "dependencies": {
     "jquery": "^3.3.1"
-  }
+  },
+  "authors": [
+    "HuanZhang <705723683@qq.com>"
+  ]
 }

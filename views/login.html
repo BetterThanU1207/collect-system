@@ -1,14 +1,12 @@
 <% include header.html %>
 <link rel="stylesheet" href="/stylesheets/indexstyle.css">
-<link rel="stylesheet" href="/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="/fonts/iconic/css/material-design-iconic-font.min.css">
 <link rel="stylesheet" href="/stylesheets/indexutil.css">
 <link rel="stylesheet" href="/stylesheets/indexmain.css">
 <div class="container">
 	<div class="row clearfix">
 		<div class="col-md-5 column">
 			<div id="contPar" class="contPar">
-				<div id="page1"  style="z-index:1;">
+				<div id="page1" style="z-index:1;">
 					<div class="title0">智能水表集抄系统</div>
 					<div class="title1">旅游、交通、气象、公共安全、大数据</div>
 					<div class="imgGroug">
@@ -29,48 +27,48 @@
 					<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
 						<form class="login100-form validate-form">
 							<span class="login100-form-title p-b-49">登录</span>
-		
+
 							<div class="wrap-input100 validate-input m-b-23" data-validate="请输入用户名">
 								<span class="label-input100">用户名</span>
 								<input class="input100" type="text" id="username" name="username" placeholder="请输入用户名" autocomplete="off">
 								<span class="focus-input100" data-symbol="&#xf206;"></span>
 							</div>
-		
+
 							<div class="wrap-input100 validate-input" data-validate="请输入密码">
 								<span class="label-input100">密码</span>
 								<input class="input100" type="password" id="password" name="password" placeholder="请输入密码">
 								<span class="focus-input100" data-symbol="&#xf190;"></span>
 							</div>
-		
+
 							<div class="text-right p-t-8 p-b-31">
 								<a href="javascript:">忘记密码？</a>
 							</div>
-		
+
 							<div class="container-login100-form-btn">
 								<div class="wrap-login100-form-btn">
 									<div class="login100-form-bgbtn"></div>
 									<button class="login100-form-btn" id="loginbtn">登 录</button>
 								</div>
 							</div>
-							<div class="login_info" style="display:none;"></div>
+							<div class="login_info"></div>
 							<div class="txt1 text-center p-t-54 p-b-20">
 								<span>第三方登录</span>
 							</div>
-		
+
 							<div class="flex-c-m">
 								<a href="#" class="login100-social-item bg1">
 									<i class="fa fa-wechat"></i>
 								</a>
-		
+
 								<a href="#" class="login100-social-item bg2">
 									<i class="fa fa-qq"></i>
 								</a>
-		
+
 								<a href="#" class="login100-social-item bg3">
 									<i class="fa fa-weibo"></i>
 								</a>
 							</div>
-		
+
 							<div class="flex-col-c p-t-25">
 								<a href="javascript:" class="txt2">立即注册</a>
 							</div>
@@ -81,47 +79,48 @@
 		</div>
 	</div>
 </div>
+<!-- 解决indexcom.js中js版本冲突问题 -->
 <script src="/jquery/dist/jquery-1.8.0.min.js"></script>
 <script src="/javascripts/indexcom.js"></script>
 <script src="/javascripts/indexmain.js"></script>
 <script>
-	$(function(){ 
-		$("#loginbtn").click(function(){ 
+	$(function () {
+		$("#loginbtn").click(function () {
 			event.preventDefault();
 			var username = $("#username").val();
 			var password = $("#password").val();
 			console.log(username);
 			console.log(password);
-			var data = {"username":username,"password":password};
-			$.ajax({ 
+			var data = { "username": username, "password": password };
+			$.ajax({
 				// async: false,
-				url:'/ajax/login',
-				type:'POST',
+				url: '/ajax/login',
+				type: 'POST',
 				// dataType : "jsonp", // 返回的数据类型，设置为JSONP方式
-            	// jsonp : 'callback', //指定一个查询参数名称来覆盖默认的 jsonp 回调参数名 callback
+				// jsonp : 'callback', //指定一个查询参数名称来覆盖默认的 jsonp 回调参数名 callback
 				data: data,
-				success: function(result,status){ 
-					if (result == "0") {
-						$(".login_info").html("用户名或密码错误！");
-						return false;
-					}
+				success: function (result, status) {
+					// if (result == "0") {
+					// 	$(".login_info").html("用户名或密码错误！");
+					// 	return false;
+					// }
 					// result == "1" || status == 'OK'
 					if (status) {
 						console.log("success");
 						$(".login_info").html("登录成功，正在转到主页...");
 						location.href = 'home';
 					}
-					else {
-						$(".login_info").html("登陆失败！");
+					else if (status == 'error') {
+						$(".login_info").html("用户名或密码错误！");
 					}
 				},
-				error: function(result,status){ 
-					if(status == 'error'){ 
-						location.href = 'login';
+				error: function (result, status) {
+					if (status == 'error') {
+						// location.href = 'login';
 					}
 				}
 			});
 		});
 	});
-	</script>
+</script>
 <% include footer.html %>
