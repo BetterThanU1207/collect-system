@@ -11,6 +11,7 @@ var session = require('express-session');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var ajaxRouter = require('./routes/ajax');
+var tableRouter = require('./routes/table');
 
 var app = express();
 
@@ -47,32 +48,45 @@ app.use(function (req, res, next) {
   for (var i = 0; i < arr.length; i++) {
     arr[i] = arr[i].split('?')[0];
   }
-  console.log(arr);
-  console.log(url);
-  console.log(req.session.user);
+  // console.log(arr);
+  // console.log(url);
+  // console.log(req.session.user);
   if (url != "/" && url != "/ajax/login" && !req.session.user){
     return res.redirect('/');
   };
   next();
 })
+// //处理跨域
+// app.all("*",function(req,res,next){
+//   res.header("Access-Control-Allow-Origin","*"); //允许所有访问者跨域请求
+//   next();
+// })
+app.use('/users', usersRouter); // 即为为路径 /users 设置路由
+app.get('/examples/:project/:func', require('./examples'));
 
 app.use('/', indexRouter);  // 即为为路径 / 设置路由
-//app.use('/login',indexRouter); // 即为为路径 /home 设置路由
 app.use('/home',indexRouter); // 即为为路径 /home 设置路由
-app.use('/showtable.html',indexRouter);
-app.use('/edittable.html',indexRouter);
 app.use("/logout",indexRouter); // 即为为路径 /logout 设置路由
+app.use('/pswchange.html',indexRouter);
 
-app.use('/users', usersRouter); // 即为为路径 /users 设置路由
+app.use('/DetailView.html',indexRouter);
+app.use('/editable.html',indexRouter);
+app.use('/edittable.html',indexRouter);
+app.use('/export.html',indexRouter);
+app.use('/Format.html',indexRouter);
+app.use('/jQueryshow.html',indexRouter);
+app.use('/Pagination.html',indexRouter);
+app.use('/Toolbar.html',indexRouter);
+app.use('/x-editable.html',indexRouter);
 
 app.use('/ajax',ajaxRouter); // 即为为路径 /login 设置路由
-//app.use('/login',indexRouter); // 即为为路径 /login 设置路由
+
+app.use('/table',tableRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
 });
-
 // error handler
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development
@@ -82,6 +96,7 @@ app.use(function(err, req, res, next) {
   // render the error page
   res.status(err.status || 500);
   res.render('error');
+  next();
 });
 
 module.exports = app;

@@ -1,0 +1,122 @@
+[
+    {
+        "custNo": 1,
+        "custName": "Item 1",
+        "price": "$1",
+        "amount": 4
+    },
+    {
+        "custNo": 2,
+        "custName": "Item 2",
+        "price": "$2",
+        "amount": 8
+    },
+    {
+        "custNo": 3,
+        "custName": "Item 3",
+        "price": "$3",
+        "amount": 2
+    },
+    {
+        "custNo": 4,
+        "custName": "Item 4",
+        "price": "$4",
+        "amount": 90
+    },
+    {
+        "custNo": 5,
+        "custName": "Item 5",
+        "price": "$5",
+        "amount": 2
+    },
+    {
+        "custNo": 6,
+        "custName": "Item 6",
+        "price": "$6",
+        "amount": 3
+    },
+    {
+        "custNo": 7,
+        "custName": "Item 7",
+        "price": "$7",
+        "amount": 7
+    },
+    {
+        "custNo": 8,
+        "custName": "Item 8",
+        "price": "$8",
+        "amount": 39
+    },
+    {
+        "custNo": 9,
+        "custName": "Item 9",
+        "price": "$9",
+        "amount": 78
+    },
+    {
+        "custNo": 10,
+        "custName": "Item 10",
+        "price": "$10",
+        "amount": 30
+    },
+    {
+        "custNo": 11,
+        "custName": "Item 11",
+        "price": "$11",
+        "amount": 32
+    },
+    {
+        "custNo": 12,
+        "custName": "Item 12",
+        "price": "$12",
+        "amount": 12
+    },
+    {
+        "custNo": 13,
+        "custName": "Item 13",
+        "price": "$13",
+        "amount": 76
+    },
+    {
+        "custNo": 14,
+        "custName": "Item 14",
+        "price": "$14",
+        "amount": 10
+    },
+    {
+        "custNo": 15,
+        "custName": "Item 15",
+        "price": "$15",
+        "amount": 9
+    },
+    {
+        "custNo": 16,
+        "custName": "Item 16",
+        "price": "$16",
+        "amount": 8
+    },
+    {
+        "custNo": 17,
+        "custName": "Item 17",
+        "price": "$17",
+        "amount": 1
+    },
+    {
+        "custNo": 18,
+        "custName": "Item 18",
+        "price": "$18",
+        "amount": 99
+    },
+    {
+        "custNo": 19,
+        "custName": "Item 19",
+        "price": "$19",
+        "amount": 100
+    },
+    {
+        "custNo": 20,
+        "custName": "Item 20",
+        "price": "$20",
+        "amount": 109
+    }
+]

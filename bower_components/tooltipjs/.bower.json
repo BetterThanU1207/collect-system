@@ -1,0 +1,28 @@
+{
+  "name": "tooltipjs",
+  "version": "0.0.4",
+  "authors": [
+    "konstantindenerz <konstantin.denerz+github@googlemail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.1"
+  },
+  "homepage": "https://github.com/konstantindenerz/tooltip",
+  "_release": "0.0.4",
+  "_resolution": {
+    "type": "version",
+    "tag": "v0.0.4",
+    "commit": "38c6d086b9d564114ba860515c796dbc465dd618"
+  },
+  "_source": "https://github.com/konstantindenerz/tooltip.git",
+  "_target": "^0.0.4",
+  "_originalSource": "tooltip.js"
+}

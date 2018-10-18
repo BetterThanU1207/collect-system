@@ -1,0 +1,94 @@
+<% include header.html %>
+<link rel="stylesheet" href="/stylesheets/indexstyle.css">
+<link rel="stylesheet" href="/stylesheets/indexutil.css">
+<link rel="stylesheet" href="/stylesheets/indexmain.css">
+<div class="container-fluid">
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <div class="limiter">
+                <div class="container-login100">
+                    <div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
+                        <form class="login100-form validate-form">
+                            <div class="wrap-input100 validate-input m-b-23" data-validate="请输入原密码">
+                                <span class="label-input100">原密码</span>
+                                <input class="input100" type="password" id="oldpasswd" name="oldpasswd" placeholder="请输入原密码"
+                                    required>
+                                <span class="focus-input100" data-symbol="&#xf190;"></span>
+                            </div>
+
+                            <div class="wrap-input100 validate-input m-b-23" data-validate="请输入新密码">
+                                <span class="label-input100">新密码</span>
+                                <input class="input100" type="password" id="newpasswd" name="newpasswd" placeholder="请输入新密码"
+                                    required>
+                                <span class="focus-input100" data-symbol="&#xf190;"></span>
+                            </div>
+
+                            <div class="wrap-input100 validate-input m-b-23" data-validate="请确认新密码">
+                                <span class="label-input100">确认密码</span>
+                                <input class="input100" type="password" id="newpasswd2" name="newpasswd2" placeholder="请输入确认密码"
+                                    required>
+                                <span class="focus-input100" data-symbol="&#xf190;"></span>
+                            </div>
+
+                            <div class="txt1 text-center p-t-1 p-b-1">
+                                <span id="login_info" style="color:red;"></span>
+                            </div>
+
+                            <div class="container-login100-form-btn">
+                                <div class="wrap-login100-form-btn">
+                                    <div class="login100-form-bgbtn"></div>
+                                    <button class="login100-form-btn" id="confirmbtn" type="button" onclick="modifyPwd()">确 认</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function modifyPwd() {
+        var oldpasswd = $("#oldpasswd").val();
+        var newpasswd = $("#newpasswd").val();
+        var newpasswd2 = $("#newpasswd2").val();
+        // console.log(newpasswd);
+        // console.log(newpasswd2);
+        if (newpasswd != newpasswd2) {
+            $("#login_info").html("新密码两次输入不相同！");
+            return;
+        };
+        var data = { "oldpasswd": oldpasswd, "newpasswd": newpasswd };
+        $.ajax({
+            // async: false,
+            url: '/ajax/modifyPwd',
+            type: 'POST',
+            // dataType: "jsonp", // 返回的数据类型，设置为JSONP方式
+            // jsonp: 'callback', //指定一个查询参数名称来覆盖默认的 jsonp 回调参数名 callback
+            data: data,
+            success: function (result, status) {
+                console.log("success status " + status);
+                console.log("success result：" + result);
+                if (status) {
+                    console.log("success");
+                    $("#login_info").html("修改成功！请重新登录。");
+                    alert("修改成功！请重新登录。");
+                    parent.location.href = 'logout';                    
+                }
+                else if (status == 'error') {
+                    $("#login_info").html("修改失败，原密码可能错误！");
+                }
+                console.log("result：" + result);
+            },
+            error: function (result, status) {
+                if (status == 'error') {
+                    console.log("error status " + status);
+                    console.log("error result：" + result);
+                    $("#login_info").html("修改失败，原密码可能错误！");
+                    return;
+                }
+            }
+        });
+    }
+</script>
+<% include footer.html %>

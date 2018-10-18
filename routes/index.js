@@ -11,12 +11,12 @@ router.get('/', function (req, res, next) {
 
 /* GET home page. */
 router.get("/home", function (req, res) {
-	// if(!req.session.user){ 					//到达/home路径首先判断是否已经登录
-	// 	req.session.error = "请先登录"
-	// 	res.redirect("/");				//未登录则重定向到 /login 路径
-	// 	return;
-	// }
-	db.selectAll("menu", function (err, result) {//查询所有news表的数据
+	var user = req.session.user;
+    var name = user.username;
+	var level = user.level;
+	console.log("用户："+ name + "等级："+ level);
+	var selectSQL = "select * from menu where rolelevel <= '" + level + "'";
+	db.querySql(selectSQL, "", function (err, result) {//查询所有news表的数据
 		// console.log(result);
 		console.log(result.recordset);
 		if (result.recordset.length > 0) {
@@ -51,33 +51,59 @@ router.get("/home", function (req, res) {
 			//console.log(content);
 			// 写入文件内容（如果文件不存在会创建一个文件）
 			// 写入时会先清空文件
-
-			fs.writeSync(fs.openSync('./public/homepage/data/menudata.js','w'), content, function (err) {
+			// fs.writeSync(fs.openSync('./public/homepage/data/menudata.js','w'), content, function (err) {
+			fs.writeFile('./public/homepage/data/menudata.js', content, function (err) {
 				if (err) {
 					throw err;
 				}
 				console.log('Saved.');
+				// 存储完毕再渲染主页
+				res.render("home", { title: '智能水表集抄系统', username: name });         //已登录则渲染home页面
 				// 写入成功后读取测试    
 				fs.readFile('./public/homepage/data/menudata.js', 'utf-8', function (err, data) {
 					if (err) {
 						throw err;
 					}
+					// res.render("home", { title: '智能水表集抄系统', username: name });         //已登录则渲染home页面
 					//console.log(data);
 				});
 			});
 		}
 	});
-	res.render("home", { title: '智能水表集抄系统' });         //已登录则渲染home页面
+	
+});
+router.get('/pswchange.html', function (req, res, next) {
+	res.render('pswchange', { title: '' });
 });
 
-router.get('/showtable.html', function (req, res, next) {
-
-
-	res.render('showtable', { title: '' });
+router.get('/DetailView.html', function (req, res, next) {
+	res.render('tables/DetailView', { title: '' });
+});
+router.get('/editable.html', function (req, res, next) {
+	res.render('tables/editable', { title: '' });
 });
 router.get('/edittable.html', function (req, res, next) {
-	res.render('edittable');
+	res.render('tables/edittable', { title: '' });
 });
+router.get('/export.html', function (req, res, next) {
+	res.render('tables/export', { title: '' });
+});
+router.get('/Format.html', function (req, res, next) {
+	res.render('tables/Format', { title: '' });
+});
+router.get('/jQueryshow.html', function (req, res, next) {
+	res.render('tables/jQueryshow', { title: '' });
+});
+router.get('/Pagination.html', function (req, res, next) {
+	res.render('tables/Pagination', { title: '' });
+});
+router.get('/Toolbar.html', function (req, res, next) {
+	res.render('tables/Toolbar', { title: '' });
+});
+router.get('/x-editable.html', function (req, res, next) {
+	res.render('tables/x-editable', { title: '' });
+});
+
 
 /* GET logout page. */
 router.get("/logout", function (req, res) {    // 到达 /logout 路径则登出， session中user,error对象置空，并重定向到根路径

@@ -157,7 +157,7 @@ SideMenu.prototype = {
                 $(".main").html(item.text)
             }
             else {
-                $(".main").html('<iframe id="mainframe" src="page/index.html" frameborder="0" name="main" style="width:100%;height:100%;padding:0" border="0"></iframe>')
+                $(".main").html('<iframe id="mainframe" src="/homepage/page/page.html" frameborder="0" name="main" style="width:100%;height:100%;padding:0" border="0"></iframe>')
 
             }
         })

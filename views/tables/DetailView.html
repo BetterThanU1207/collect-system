@@ -1,0 +1,31 @@
+<% include ../header.html %>
+
+<div class="container">
+    <h1>Detail View</h1>
+    <p>Use <code>detailView</code> and <code>detailFormatter</code> options to show detail view.</p>
+    <table id="table"
+           data-toggle="table"
+           data-height="460"
+           data-detail-view="true"
+           data-detail-formatter="detailFormatter"
+           data-url="/json/data1.json">
+        <thead>
+        <tr>
+            <th data-field="id">ID</th>
+            <th data-field="name">Item Name</th>
+            <th data-field="price">Item Price</th>
+        </tr>
+        </thead>
+    </table>
+</div>
+<script>
+function detailFormatter(index, row) {
+    var html = [];
+    $.each(row, function (key, value) {
+        html.push('<p><b>' + key + ':</b> ' + value + '</p>');
+    });
+    return html.join('');
+}
+</script>
+
+<% include ../footer.html %>

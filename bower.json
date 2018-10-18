@@ -13,7 +13,15 @@
     "tests"
   ],
   "dependencies": {
-    "jquery": "^3.3.1"
+    "jquery": "^3.3.1",
+    "bootstrap-table": "^1.12.1",
+    "tooltipjs": "tooltip.js#^0.0.4",
+    "tooltip": "*",
+    "popper.js": "^1.14.4",
+    "bootstrap": "^3.3.7",
+    "tableexport.js": "^5.0.2",
+    "bootstrap-editable": "*",
+    "x-editable": "^1.5.1"
   },
   "authors": [
     "HuanZhang <705723683@qq.com>"

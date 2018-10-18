@@ -40,8 +40,12 @@
 								<span class="focus-input100" data-symbol="&#xf190;"></span>
 							</div>
 
+							<div class="txt1 text-center p-t-1 p-b-1">
+								<span id="login_info" style="color:red;"></span>
+							</div>
+							<!-- <div class="text-left p-t-8 p-b-31" id="login_info"></div> -->
 							<div class="text-right p-t-8 p-b-31">
-								<a href="javascript:">忘记密码？</a>
+								<a href="javascript:" id="btn">显示密码</a>
 							</div>
 
 							<div class="container-login100-form-btn">
@@ -50,7 +54,7 @@
 									<button class="login100-form-btn" id="loginbtn">登 录</button>
 								</div>
 							</div>
-							<div class="login_info"></div>
+
 							<div class="txt1 text-center p-t-54 p-b-20">
 								<span>第三方登录</span>
 							</div>
@@ -84,6 +88,17 @@
 <script src="/javascripts/indexcom.js"></script>
 <script src="/javascripts/indexmain.js"></script>
 <script>
+	window.onload = function () {
+		var btn = document.getElementById("btn");
+		var pass = document.getElementById("password")
+		btn.onmousedown = function () {
+			pass.type = "number"
+		};
+		btn.onmouseup = btn.onmouseout = function () {
+			pass.type = "password"
+		}
+	}
+
 	$(function () {
 		$("#loginbtn").click(function () {
 			event.preventDefault();
@@ -107,16 +122,16 @@
 					// result == "1" || status == 'OK'
 					if (status) {
 						console.log("success");
-						$(".login_info").html("登录成功，正在转到主页...");
+						$("#login_info").html("登录成功，正在转到主页...");
 						location.href = 'home';
 					}
 					else if (status == 'error') {
-						$(".login_info").html("用户名或密码错误！");
+						$("#login_info").html("用户名或密码错误！");
 					}
 				},
 				error: function (result, status) {
 					if (status == 'error') {
-						// location.href = 'login';
+						$("#login_info").html("用户名或密码错误！");
 					}
 				}
 			});

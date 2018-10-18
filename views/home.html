@@ -4,7 +4,7 @@
 <div class="header">
 
     <div class="logo">
-        <img src="/homepage/photo/user2-160x160.jpg" /><span>Admin</span>
+        <img src="/homepage/photo/user2-160x160.jpg" /><span id="currentUser"><%= username %></span>
     </div>
 
     <div class="header-tabs">
@@ -19,9 +19,8 @@
 
     <div class="header-menu">
         <div class="cc-info" style="font-size:16px;">
-            <a href="#" onclick="logout()" style="float: right;margin-left: 20px;margin-right: 100px;color: black;">注销</a>
-            <!-- <a href="javascript:void(0);" onclick="modifyPwd()" style="float: right;margin-left: 20px;color: black;">修改密码</a> -->
-            <a href="#" onclick="window.open('/城市供水管理服务平台用户手册.doc')" style="float: right;margin-left: 50px;color: black;">帮助</a>
+            <a href="#" onclick="logout()" style="float: right;margin-right: 50px;margin-top: 5px; color: black;" class="btn btn-danger">注 销 <i class="fa fa-sign-out"></i></a>
+            <a href="#" onclick="window.open('/城市供水管理服务平台用户手册.doc')" style="float: right;margin-top: 5px;color: black;"class="btn btn-info">帮 助 <i class="fa fa-info"></i></a>
         </div>
     </div>
 </div>
@@ -38,6 +37,7 @@
     $("#menu").sidemenu({
         data: menuData,
     });
+    
     function logout() {
         if (confirm("退出系统？")) {
             location.href = 'logout';

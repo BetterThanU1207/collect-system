@@ -1,0 +1,19 @@
+<% include ../header.html %>
+
+<div class="container">
+    <h1>简单分页展示表格</h1>
+    
+    <table id="table" data-toggle="table" data-height="460" data-url="/json/data1.json" data-pagination="true"
+        data-page-size="5" data-page-list="[5,8,10]" data-pagination-first-text="First" data-pagination-pre-text="Previous"
+        data-pagination-next-text="Next" data-pagination-last-text="Last">
+        <thead>
+            <tr>
+                <th data-field="id">ID</th>
+                <th data-field="name">Item Name</th>
+                <th data-field="price">Item Price</th>
+            </tr>
+        </thead>
+    </table>
+</div>
+
+<% include ../footer.html %>

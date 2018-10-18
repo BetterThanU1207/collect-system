@@ -1,4 +1,4 @@
-;(function($, window, document,undefined) {
+(function($, window, document,undefined) {
   var cjjTable = function(ele,opt){
         this.$element = ele,
         this.defaults ={
