@@ -4,7 +4,39 @@ var db = require('../commonjs/db');
 
 router.post("/item", function (req, res, next) {
   db.selectAll("item", function (err, result) {//查询所有news表的数据
-    console.log(result);
+    // console.log(result);
+    if (result.recordset.length > 0) {
+      console.log("find it!");
+      res.json(result.recordset);
+    }
+    else {
+      console.log("Not exit!");
+      res.sendStatus(404);
+      // res.send("0");
+    }
+  });
+});
+router.post("/item/query", function (req, res, next) {
+  var whereSQL = "";
+  var custNo = req.body.no;
+  var custName = req.body.name;
+  if (custNo != "") {
+    whereSQL += "where custNo = '" + custNo + "'";
+  };
+  if (custName != "") {
+    whereSQL += "and custName = '" + custName + "'";
+  };
+  var selectSQL = "select * from item";
+  if (custNo != "" && custName != "") {
+    selectSQL += " where custNo = '" + custNo + "'" + " and custName = '" + custName + "'";
+  } else if (custNo == "" && custName != "") {
+    selectSQL += " where custName = '" + custName + "'";
+  } else if (custNo != "" && custName == "") {
+    selectSQL += " where custNo = '" + custNo + "'";
+  };
+  // db.selec("item", "", whereSQL, "", "", function (err, result) {//查询所有news表的数据
+  db.querySql(selectSQL, "", function (err, result) {
+    // console.log(result);
     if (result.recordset.length > 0) {
       console.log("find it!");
       res.json(result.recordset);
@@ -18,8 +50,25 @@ router.post("/item", function (req, res, next) {
 });
 router.post("/item/delete", function (req, res, next) {
   var custNo = req.body.param;
-  var selectSQL = "where custNo = '" + custNo + "'";
-  db.del(selectSQL, "", "item", function (err, result) {//查询所有news表的数据
+  var whereSQL = "where custNo = '" + custNo + "'";
+  db.del(whereSQL, "", "item", function (err, result) {//查询所有news表的数据
+    console.log(result);
+    if (result.rowsAffected > 0) {
+      console.log("find it!");
+      res.sendStatus(200);
+      // res.json(result.recordset);
+    }
+    else {
+      console.log("Not exit!");
+      res.sendStatus(404);
+      // res.send("0");
+    }
+  });
+});
+router.post("/item/add", function (req, res, next) {
+  var custName = req.body.name;
+  var addObj = { "custName": custName };
+  db.add(addObj, "item", function (err, result) {//查询所有news表的数据
     console.log(result);
     if (result.rowsAffected > 0) {
       console.log("find it!");
@@ -38,8 +87,8 @@ router.post("/item/modify", function (req, res, next) {
   var custName = req.body.name;
   console.log(custNo);
   console.log(custName);
-  var updateObj = { "custNo": custNo, "custName": custName };
-  var whereObj = { "custNo": custNo};
+  var updateObj = { "custName": custName };
+  var whereObj = { "custNo": custNo };
   db.update(updateObj, whereObj, "item", function (err, result) {//查询所有news表的数据
     console.log(result);
     if (result.rowsAffected > 0) {

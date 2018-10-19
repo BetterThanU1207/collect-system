@@ -1,35 +1,41 @@
 <% include ../header.html %>
 <!--bootstrap-table表格-->
-<div class="panel panel-default">
-    <div class="panel-heading">查询条件</div>
-    <div class="panel-body">
-        <form class="form-inline">
-            <div class="row">
-                <div class="col-sm-4">
-                    <label class="control-label">用户名：</label>
-                    <input id="txtTitle" type="text" class="form-control">
-                </div>
-                
-            </div>
-
-            <div class="row text-right" style="margin-top:20px;">
-                <div class="col-sm-12">
-                    <input class="btn btn-primary" type="button" value="查询" onclick="SearchData()">
-                    <input class="btn btn-default" type="button" value="批量删除" onclick="BtchDeleteBook()">
-                </div>
-            </div>
-        </form>
+<div class="card border-primary">
+    <div class="card-header">
+        查询条件
+    </div>
+    <div class="card-body" id="query-form">
+        <label for="searchNo">用户编码：</label>
+        <input type="text" name="searchNo" id="searchNo">
+        <label for="searchName">用户名：</label>
+        <input type="text" name="searchName" id="searchName">
+    </div>
+    <div class="card-footer text-right">
+        <input class="btn btn-primary" type="button" value="查询" onclick="SearchData()">
+        <input class="btn btn-primary" type="button" value="重置" onclick="resetSearch()">
     </div>
 </div>
-<div class="panel panel-success">
-	<div class="panel-heading">
-		<h3 class="panel-title">面板标题</h3>
-	</div>
-	<div class="panel-body">
-		这是一个基本的面板
-	</div>
-</div>
 <table id="data-table"></table>
+<div id="toolbar">
+    <div class="form-inline" role="form">
+        <!-- <div class="form-group">
+            <span>Offset: </span>
+            <input name="offset" class="form-control w70" type="number" value="0">
+        </div>
+        <div class="form-group">
+            <span>Limit: </span>
+            <input name="limit" class="form-control w70" type="number" value="5">
+        </div>
+        <div class="form-group">
+            <input name="search" class="form-control" type="text" placeholder="Search">
+        </div>
+        <button id="ok" type="submit" class="btn btn-default">OK</button> -->
+        <button id="btn_additem" type="button" class="btn  btn-success" onclick="addData()">
+            <span class="fa fa-plus" aria-hidden="true"></span>新增
+        </button>
+        <button class="btn btn-warning" onclick="BtchDeleteBook()">批量删除</button>
+    </div>
+</div>
 <!-- 模态框示例（Modal） -->
 <form action="" class="form-horizontal" role="form" id="form_data" style="margin: 20px;">
     <div class="modal fade" id="modalTable" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -46,7 +52,7 @@
                 <div class="modal-body">
                     <form class="form-horizontal" role="form">
                         <div class="form-group">
-                            <label for="custNo" class="col-sm-3 control-label">用户编号</label>
+                            <label for="custNo" id="custNoLabel" class="col-sm-3 control-label">用户编号</label>
                             <div class="col-sm-9">
                                 <input type="text" class="form-control" id="custNo" name="custNo" value="" placeholder="请输入用户ID">
                             </div>
@@ -117,6 +123,10 @@
             method: "POST",
             //请求内容类型
             contentType: "application/x-www-form-urlencoded",
+            //当数据为 undefined 时显示的字符
+            undefinedText: "--",
+            //表格的类名称
+            // classes: "table-condensed",
             //数据类型
             dataType: "json",
             //table高度：如果没有设置，表格自动根据记录条数觉得表格高度
@@ -148,10 +158,10 @@
             clickToSelect: false,
             //最少要显示的列数
             minimumCountColumns: 2,
-            //显示隐藏列
+            //是否显示内容列下拉框。
             showColumns: true,
-            //cell没有值时显示
-            undefinedText: '-',
+            showHeader: true,
+            showFooter: true,
             //分页方式：client客户端分页，server服务端分页
             sidePagination: "client",
             //每页的记录行数
@@ -170,6 +180,14 @@
             iconSize: 'pager',
             //查询条件
             queryParams: queryParams,
+            // rowStyle: function rowStyle(row, index) {
+            //     if (index % 2 === 0) {
+            //         return {
+            //             classes: 'active'
+            //         };
+            //     }
+            //     return {};
+            // },
             //表头
             columns: [{
                 field: 'state',//id
@@ -180,7 +198,7 @@
                 title: '用户编号',
                 field: 'custNo',
                 align: 'center',
-                valign: 'middle',
+                valign: 'middle'
             }, {
                 title: '用户名',
                 field: 'custName',
@@ -240,22 +258,35 @@
             delData(row.custNo);
         }
     };
-    //还不知该部分功能
+    //还不知该部分功能——大概是采用服务端分页时传递参数
     function queryParams(params) {
         /**
          * 查询条件与分页数据
          * @return {object} 返回参数对象
          */
         //排序方式
-        params.order = "modify_time desc";
-        //第几页：指定跳转
-        params.nowPage = this.pageNumber;
-        //name
-        params.custName = $("#custName").val();
-        //工具栏 参数
+        // params.order = "modify_time desc";
+        // //第几页：指定跳转
+        // params.nowPage = this.pageNumber;
+        // //name
+        // params.custName = $("#custName").val();
+        // //工具栏 参数
         console.log("查询条件");
         console.log(params);
-        return params;
+        // return params;
+        var param = {};
+        $('#query-form').find('[name]').each(function () {
+            var value = $(this).val();
+            if (value != '') {
+                param[$(this).attr('name')] = value;
+            }
+        });
+
+        param['pageSize'] = params.limit;   //页面大小
+        param['pageNumber'] = params.offset;   //页码
+
+        console.log(param);
+        return param;
     }
     function refresh() {
         /**
@@ -264,11 +295,17 @@
         $table.bootstrapTable('refresh');
         //$table.bootstrapTable('refresh'.{url:""});//刷新时调用接口防止表格无限销毁重铸时出现英文
     }
-
+    // 重置查询条件
+    function resetSearch() {
+        $('#query-form').find('[name]').each(function () {
+            $(this).val('');
+        });
+    }
     //清除弹窗原数据
     $("#modalTable").on("hidden.bs.modal", function () {
         $(this).removeData("bs.modal");
     });
+    // 显示一行数据
     function viewData(row, index) {//row为表格内一行的数据传值
         console.log(row.custNo);
         console.log("查看页面" + row + index);
@@ -281,62 +318,113 @@
         $("#btnSubmit").attr("disabled", "true");
         $('#modalTable').modal();
     }
+    // 显示一行数据的编辑界面
     function editData(row) {//row为表格内一行的数据传值
         console.log("修改页面" + row);
         $(".modal-title").html("数据编辑");
         $("#custNo").attr("value", row.custNo);
+        $("#custNo").attr("readonly", "true");
         // $("#custNo").removeAttr("readonly");
         $("#custName").attr("value", row.custName);
         $("#custName").removeAttr("readonly");
         $("#btnSubmit").removeAttr("disabled");
         $('#modalTable').modal();
     }
+    // 显示一行数据的编辑界面
+    function addData() {//row为表格内一行的数据传值
+        console.log("新增数据");
+        $(".modal-title").html("数据新增");
+        $("#custNoLabel").attr("style", "display:none");
+        $("#custNo").attr("style", "display:none");
+        // $("#custNo").attr("readonly", "true");
+        // $("#custNo").removeAttr("readonly");
+        $("#custName").attr("value", "");
+        $("#custName").removeAttr("readonly");
+        $("#btnSubmit").removeAttr("disabled");
+        $("#btnSubmit").attr("onclick", "addItem()");
+        $('#modalTable').modal();
+    }
+    // 组合查询
+    function SearchData() {
+        var searchNo = $("#searchNo").val();
+        var searchName = $("#searchName").val();
+
+        var sendData = { "no": searchNo, "name": searchName };
+        $.ajax({
+            url: '/table/item/query',
+            method: 'POST',
+            contentType: "application/x-www-form-urlencoded",
+            data: sendData,
+            dataType: "json",
+            //阻止深度序列化，向后台传送数组
+            traditional: true,
+            async: false,//这里同步，请按实际需求设置
+            //成功
+            success: function (result, status) {
+                console.log(result);
+                if (status) {//操作成功
+
+                    $table.bootstrapTable('load', result);
+                    //刷新表格
+                    // refresh();
+                } else {
+                    alert("查询失败");//操作失败
+                }
+            },
+            //请求错误
+            error: function () {
+                alert("请求错误");
+            }
+        });
+    }
+    // 修改数据表单提交
     function SendForm() {
         var custNo = $("#custNo").val();
         var custName = $("#custName").val();
 
-        var sendData = { "no": custNo,  "name": custName};
+        var sendData = { "no": custNo, "name": custName };
         $.ajax({
-                url: '/table/item/modify',
-                method: 'POST',
-                contentType: "application/x-www-form-urlencoded",
-                data: sendData,
-                //阻止深度序列化，向后台传送数组
-                traditional: true,
-                async: false,//这里同步，请按实际需求设置
-                //成功
-                success: function (result, status) {
-                    console.log(result);
-                    if (status) {//操作成功
-                        /**
-                         * callback获取回调数据
-                         * @param {object} result 回调对象
-                         * @param {object} status 操作状态码
-                         */
-                        alert("修改成功");
-                        //刷新表格
-                        refresh();
-                    } else {
-                        alert("修改失败");//操作失败
-                    }
-                },
-                //请求错误
-                error: function () {
-                    alert("请求错误");
+            url: '/table/item/modify',
+            method: 'POST',
+            contentType: "application/x-www-form-urlencoded",
+            data: sendData,
+            //阻止深度序列化，向后台传送数组
+            traditional: true,
+            async: false,//这里同步，请按实际需求设置
+            //成功
+            success: function (result, status) {
+                console.log(result);
+                if (status) {//操作成功
+                    /**
+                     * callback获取回调数据
+                     * @param {object} result 回调对象
+                     * @param {object} status 操作状态码
+                     */
+                    alert("修改成功");
+                    //刷新表格
+                    refresh();
+                } else {
+                    alert("修改失败");//操作失败
                 }
-    });
-}
+            },
+            //请求错误
+            error: function () {
+                alert("请求错误");
+            }
+        });
+    }
+    // 执行删除数据
     function delData(strData) {
-        /**
-         * 删除 单行or多行
-         * @param {string} strData 单行选中 数据
-         * @param {object} strData 多行中行 数组
-         */
+        // /**
+        //  * 删除 单行or多行
+        //  * @param {string} strData 单行选中 数据
+        //  * @param {object} strData 多行中行 数组
+        //  */
         //多条数据转换
-        if (typeof strData == "object") {
+        if (typeof strData == "array") {
             strData = strData.join();
         }
-
+        console.log(strData);
         //确认操作
         if (confirm('确定要删除用户编号为' + strData + '数据?')) {
             console.log("OK");
@@ -375,7 +463,42 @@
             });
         };
     }
+    // 新增一条数据
+    function addItem() {
+        // var custNo = $("#custNo").val();
+        var custName = $("#custName").val();
 
+        var sendData = { "name": custName };
+        $.ajax({
+            url: '/table/item/add',
+            method: 'POST',
+            contentType: "application/x-www-form-urlencoded",
+            data: sendData,
+            //阻止深度序列化，向后台传送数组
+            traditional: true,
+            async: false,//这里同步，请按实际需求设置
+            //成功
+            success: function (result, status) {
+                console.log(result);
+                if (status) {//操作成功
+                    /**
+                     * callback获取回调数据
+                     * @param {object} result 回调对象
+                     * @param {object} status 操作状态码
+                     */
+                    alert("添加成功");
+                    //刷新表格
+                    refresh();
+                } else {
+                    alert("添加失败");//操作失败
+                }
+            },
+            //请求错误
+            error: function () {
+                alert("请求错误");
+            }
+        });
+    }
     //批量删除
     function BtchDeleteBook() {
         var opts = $('#data-table').bootstrapTable('getSelections');
@@ -384,12 +507,15 @@
         }
         else {
             var idArray = [];
+            var strData = [];
             for (var i = 0; i < opts.length; i++) {
-                idArray.push(opts[i].BookId);
+                idArray.push(opts[i].custNo);
+                delData(opts[i].custNo);
+                strData.push({ "custNo": opts[i].custNo, "custName": opts[i].custName });
             }
-            if (confirm("确定删除ID：" + idArray + "吗？")) {
-                alert("执行删除操作");
-            }
+            // if (confirm("确定删除用户编号 ：" + idArray + "吗？")) {
+            //     delData(strData);
+            // }
         }
     }
 </script>
