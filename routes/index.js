@@ -79,30 +79,30 @@ router.get('/pswchange.html', function (req, res, next) {
 router.get('/DetailView.html', function (req, res, next) {
 	res.render('tables/DetailView', { title: '' });
 });
-router.get('/editable.html', function (req, res, next) {
-	res.render('tables/editable', { title: '' });
-});
+// router.get('/editable.html', function (req, res, next) {
+// 	res.render('tables/editable', { title: '' });
+// });
 router.get('/edittable.html', function (req, res, next) {
 	res.render('tables/edittable', { title: '' });
 });
 router.get('/export.html', function (req, res, next) {
 	res.render('tables/export', { title: '' });
 });
-router.get('/Format.html', function (req, res, next) {
-	res.render('tables/Format', { title: '' });
+router.get('/menu.html', function (req, res, next) {
+	res.render('tables/menu', { title: '' });
 });
-router.get('/jQueryshow.html', function (req, res, next) {
-	res.render('tables/jQueryshow', { title: '' });
-});
-router.get('/Pagination.html', function (req, res, next) {
-	res.render('tables/Pagination', { title: '' });
-});
-router.get('/Toolbar.html', function (req, res, next) {
-	res.render('tables/Toolbar', { title: '' });
-});
-router.get('/x-editable.html', function (req, res, next) {
-	res.render('tables/x-editable', { title: '' });
-});
+// router.get('/jQueryshow.html', function (req, res, next) {
+// 	res.render('tables/jQueryshow', { title: '' });
+// });
+// router.get('/Pagination.html', function (req, res, next) {
+// 	res.render('tables/Pagination', { title: '' });
+// });
+// router.get('/Toolbar.html', function (req, res, next) {
+// 	res.render('tables/Toolbar', { title: '' });
+// });
+// router.get('/x-editable.html', function (req, res, next) {
+// 	res.render('tables/x-editable', { title: '' });
+// });
 
 
 /* GET logout page. */

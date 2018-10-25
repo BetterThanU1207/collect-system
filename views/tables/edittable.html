@@ -1,18 +1,23 @@
 <% include ../header.html %>
 <!--bootstrap-table表格-->
-<div class="card border-primary">
+<script src="/jquery-ui/jquery-ui.min.js"></script>
+<div class="card border-primary" id="accordion">
     <div class="card-header">
-        查询条件
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+            多条件查询
+        </a>
     </div>
-    <div class="card-body" id="query-form">
-        <label for="searchNo">用户编码：</label>
-        <input type="text" name="searchNo" id="searchNo">
-        <label for="searchName">用户名：</label>
-        <input type="text" name="searchName" id="searchName">
-    </div>
-    <div class="card-footer text-right">
-        <input class="btn btn-primary" type="button" value="查询" onclick="SearchData()">
-        <input class="btn btn-primary" type="button" value="重置" onclick="resetSearch()">
+    <div id="collapseOne" class="card-collapse collapse in">
+        <div class="card-body" id="query-form">
+            <label for="searchNo">用户编码：</label>
+            <input type="text" name="searchNo" id="searchNo">
+            <label for="searchName">用户名：</label>
+            <input type="text" name="searchName" id="searchName">
+        </div>
+        <div class="card-footer text-right">
+            <input class="btn btn-primary" type="button" value="查询" onclick="SearchData()">
+            <input class="btn btn-primary" type="button" value="重置" onclick="resetSearch()">
+        </div>
     </div>
 </div>
 <table id="data-table"></table>
@@ -37,35 +42,34 @@
     </div>
 </div>
 <!-- 模态框示例（Modal） -->
-<form action="" class="form-horizontal" role="form" id="form_data" style="margin: 20px;">
-    <div class="modal fade" id="modalTable" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title" id="myModalLabel">
-                        用户信息
-                    </h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                        &times;
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form class="form-horizontal" role="form">
-                        <div class="form-group">
-                            <label for="custNo" id="custNoLabel" class="col-sm-3 control-label">用户编号</label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" id="custNo" name="custNo" value="" placeholder="请输入用户ID">
-                            </div>
+<!-- <form action="" class="form-horizontal" role="form" id="form_data" style="margin: 20px;"> -->
+<div class="modal fade" id="modalTable" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" id="modalDialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">
+                    用户信息
+                </h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <label for="custNo" id="custNoLabel" class="col-sm-3 control-label">用户编号</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="custNo" name="custNo" value="" placeholder="请输入用户ID">
                         </div>
+                    </div>
 
-                        <div class="form-group">
-                            <label for="custName" class="col-sm-3 control-label">用户名</label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" name="custName" value="" id="custName"
-                                    placeholder="用户名">
-                            </div>
+                    <div class="form-group">
+                        <label for="custName" class="col-sm-3 control-label">用户名</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" name="custName" value="" id="custName" placeholder="用户名">
                         </div>
-                        <!-- <div class="form-group">
+                    </div>
+                    <!-- <div class="form-group">
                             <label for="remark" class="col-sm-3 control-label">备注</label>
                             <div class="col-sm-9">
                                 <textarea class="form-control" name="remark" value="{remark}" id="remark" placeholder="备注">
@@ -73,19 +77,38 @@
                                 </textarea>
                             </div>
                         </div> -->
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭
-                    </button>
-                    <button type="submit" class="btn btn-primary" id="btnSubmit" onclick="SendForm();">
-                        提交
-                    </button><span id="tip"> </span>
-                </div>
-            </div><!-- /.modal-content -->
-        </div><!-- /.modal -->
-    </div>
-</form>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                </button>
+                <button type="submit" class="btn btn-primary" id="btnSubmit" onclick="SendForm()">
+                    提交
+                </button><span id="tip"> </span>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+<div class="modal fade" id="alertModal" tabindex="-1" role="dialog" aria-labelledby="alertModalLabel" aria-hidden="true">
+    <div class="modal-dialog" id="modalDialog">
+        <div class="modal-content" style="background:powderblue;">
+            <div class="modal-header">
+                <h4 class="modal-title" id="alertTitle">
+                </h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+            </div>
+            <div class="modal-body" id="alertBody">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                </button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+<!-- </form> -->
 <script>
     var $table = $('#data-table');
 
@@ -100,19 +123,27 @@
         //表格初始化
         tableInit();
         $table.bootstrapTable('hideLoading');//隐藏加载
+        $("#modalDialog").draggable();//为模态对话框添加拖拽
+        $("#modalTable").css("overflow", "hidden");//禁止模态对话框的半透明背景滚动
     })
 
+    function myAlert(title, message) {
+        $("#alertTitle").html(title);
+        $("#alertBody").html(message);
+        $("#alertModal").modal();
+    }
     function tableInit() {
         /**
          * 初始化Table
          */
         //先销毁表格
         $table.bootstrapTable('destroy');
-        var datas = [];
 
-        for (var i = 0; i < 50; i++) {
-            datas[i] = { "custNo": i + "号", "custName": i + "岁" }
-        }
+        // var datas = [];
+        // for (var i = 0; i < 50; i++) {
+        //     datas[i] = { "custNo": i + "号", "custName": i + "岁" }
+        // }
+
         //再初始化表格
         $table.bootstrapTable({
             //请求地址,此处数据为本地加载
@@ -160,8 +191,8 @@
             minimumCountColumns: 2,
             //是否显示内容列下拉框。
             showColumns: true,
-            showHeader: true,
-            showFooter: true,
+            // showHeader: true,
+            // showFooter: true,
             //分页方式：client客户端分页，server服务端分页
             sidePagination: "client",
             //每页的记录行数
@@ -178,6 +209,17 @@
             buttonsClass: 'btn',
             //分页器class
             iconSize: 'pager',
+            showExport: true,  //是否显示导出
+            exportTypes: ['excel'],  //导出文件类型
+            exportDataType: "all",             //basic', 'all', 'selected'.
+            // 不起作用
+            // exportOptions: {
+            //     ignoreColumn: [2],  //忽略某一列
+            //     fileName: '数据导出',  //文件名称设置
+            //     worksheetName: 'sheet1',  //表格工作区名称
+            //     tableName: '数据导出',
+            //     excelstyles: ['background-color', 'color', 'font-size', 'font-weight', 'border-top']
+            // },
             //查询条件
             queryParams: queryParams,
             // rowStyle: function rowStyle(row, index) {
@@ -259,34 +301,12 @@
         }
     };
     //还不知该部分功能——大概是采用服务端分页时传递参数
-    function queryParams(params) {
-        /**
-         * 查询条件与分页数据
-         * @return {object} 返回参数对象
-         */
-        //排序方式
-        // params.order = "modify_time desc";
-        // //第几页：指定跳转
-        // params.nowPage = this.pageNumber;
-        // //name
-        // params.custName = $("#custName").val();
-        // //工具栏 参数
-        console.log("查询条件");
-        console.log(params);
-        // return params;
-        var param = {};
-        $('#query-form').find('[name]').each(function () {
-            var value = $(this).val();
-            if (value != '') {
-                param[$(this).attr('name')] = value;
-            }
+    function queryParams() {
+        var params = {};
+        $('#toolbar').find('input[name]').each(function () {
+            params[$(this).attr('name')] = $(this).val();
         });
-
-        param['pageSize'] = params.limit;   //页面大小
-        param['pageNumber'] = params.offset;   //页码
-
-        console.log(param);
-        return param;
+        return params;
     }
     function refresh() {
         /**
@@ -302,7 +322,7 @@
         });
     }
     //清除弹窗原数据
-    $("#modalTable").on("hidden.bs.modal", function () {
+    $("#modalTable").on("hide.bs.modal", function () {
         $(this).removeData("bs.modal");
     });
     // 显示一行数据
@@ -311,10 +331,10 @@
         console.log("查看页面" + row + index);
         // $('#modalTable').modal("clear");
         $(".modal-title").html("查看详情");
-        $("#custNo").attr("value", row.custNo);
         $("#custNo").attr("readonly", "true");
-        $("#custName").attr("value", row.custName);
+        $("#custNo").val(row.custNo);
         $("#custName").attr("readonly", "true");
+        $("#custName").val(row.custName);
         $("#btnSubmit").attr("disabled", "true");
         $('#modalTable').modal();
     }
@@ -322,24 +342,25 @@
     function editData(row) {//row为表格内一行的数据传值
         console.log("修改页面" + row);
         $(".modal-title").html("数据编辑");
-        $("#custNo").attr("value", row.custNo);
+        $("#custNoLabel").removeAttr("style");
+        $("#custNo").removeAttr("style");
         $("#custNo").attr("readonly", "true");
-        // $("#custNo").removeAttr("readonly");
-        $("#custName").attr("value", row.custName);
+        $("#custNo").val(row.custNo);
+
+        $("#custName").val(row.custName);
         $("#custName").removeAttr("readonly");
         $("#btnSubmit").removeAttr("disabled");
         $('#modalTable').modal();
     }
-    // 显示一行数据的编辑界面
+    // 显示一行数据的新增界面
     function addData() {//row为表格内一行的数据传值
         console.log("新增数据");
         $(".modal-title").html("数据新增");
         $("#custNoLabel").attr("style", "display:none");
         $("#custNo").attr("style", "display:none");
-        // $("#custNo").attr("readonly", "true");
-        // $("#custNo").removeAttr("readonly");
-        $("#custName").attr("value", "");
+
         $("#custName").removeAttr("readonly");
+        $("#custName").val("");
         $("#btnSubmit").removeAttr("disabled");
         $("#btnSubmit").attr("onclick", "addItem()");
         $('#modalTable').modal();
@@ -358,7 +379,7 @@
             dataType: "json",
             //阻止深度序列化，向后台传送数组
             traditional: true,
-            async: false,//这里同步，请按实际需求设置
+            // async: false,//这里同步，请按实际需求设置
             //成功
             success: function (result, status) {
                 console.log(result);
@@ -368,12 +389,12 @@
                     //刷新表格
                     // refresh();
                 } else {
-                    alert("查询失败");//操作失败
+                    myAlert("错误", "查询失败！");//操作失败
                 }
             },
             //请求错误
             error: function () {
-                alert("请求错误");
+                myAlert("错误","查询请求错误");
             }
         });
     }
@@ -388,9 +409,10 @@
             method: 'POST',
             contentType: "application/x-www-form-urlencoded",
             data: sendData,
+            // dataType: "json",
             //阻止深度序列化，向后台传送数组
             traditional: true,
-            async: false,//这里同步，请按实际需求设置
+            // async: false,//这里同步，请按实际需求设置
             //成功
             success: function (result, status) {
                 console.log(result);
@@ -400,16 +422,17 @@
                      * @param {object} result 回调对象
                      * @param {object} status 操作状态码
                      */
-                    alert("修改成功");
+                     myAlert("成功","修改成功");
+                    $('#modalTable').modal('hide');
                     //刷新表格
                     refresh();
                 } else {
-                    alert("修改失败");//操作失败
+                    myAlert("错误","修改失败");//操作失败
                 }
             },
             //请求错误
             error: function () {
-                alert("请求错误");
+                myAlert("错误","修改请求错误");
             }
         });
     }
@@ -439,7 +462,7 @@
                 data: sendData,
                 //阻止深度序列化，向后台传送数组
                 traditional: true,
-                async: false,//这里同步，请按实际需求设置
+                // async: false,//这里同步，请按实际需求设置
                 //成功
                 success: function (result, status) {
                     console.log(result);
@@ -449,16 +472,16 @@
                          * @param {object} result 回调对象
                          * @param {object} status 操作状态码
                          */
-                        alert("删除成功");
+                        myAlert("提示", "删除成功");
                         //刷新表格
                         refresh();
                     } else {
-                        alert("删除失败");//操作失败
+                        myAlert("提示", "删除失败");//操作失败
                     }
                 },
                 //请求错误
                 error: function () {
-                    alert("请求错误");
+                    myAlert("提示", "删除请求错误");
                 }
             });
         };
@@ -476,7 +499,7 @@
             data: sendData,
             //阻止深度序列化，向后台传送数组
             traditional: true,
-            async: false,//这里同步，请按实际需求设置
+            // async: false,//这里同步，请按实际需求设置
             //成功
             success: function (result, status) {
                 console.log(result);
@@ -486,16 +509,17 @@
                      * @param {object} result 回调对象
                      * @param {object} status 操作状态码
                      */
-                    alert("添加成功");
+                    myAlert("提示", "添加成功");
+                    $('#modalTable').modal('hide');
                     //刷新表格
                     refresh();
                 } else {
-                    alert("添加失败");//操作失败
+                    myAlert("提示", "添加失败");//操作失败
                 }
             },
             //请求错误
             error: function () {
-                alert("请求错误");
+                myAlert("提示", "新增请求错误");
             }
         });
     }
@@ -503,7 +527,7 @@
     function BtchDeleteBook() {
         var opts = $('#data-table').bootstrapTable('getSelections');
         if (opts == "") {
-            alert("请选择要删除的数据");
+            myAlert("提示", "请选择要删除的数据");
         }
         else {
             var idArray = [];

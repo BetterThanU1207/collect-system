@@ -19,7 +19,9 @@
     "popper.js": "^1.14.4",
     "bootstrap": "^4.1.3",
     "tableexport.js": "^5.0.2",
-    "jQuery": "^3.3.1"
+    "jQuery": "^3.3.1",
+    "jquery-treegrid": "^0.3.0",
+    "jquery-ui": "^1.12.1"
   },
   "authors": [
     "HuanZhang <705723683@qq.com>"

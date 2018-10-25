@@ -1,0 +1,563 @@
+<% include ../header.html %>
+<link rel="stylesheet" href="/jquery-treegrid/css/jquery.treegrid.css">
+<script src="/bootstrap-table/dist/extensions/treegrid/bootstrap-table-treegrid.js"></script>
+<script src="/jquery-treegrid/js/jquery.treegrid.min.js"></script>
+<script src="/jquery-ui/jquery-ui.min.js"></script>
+<style>
+    label {
+    padding-top: 5px;
+    text-align: right
+    
+}
+</style>
+<!--bootstrap-table表格-->
+<table id="data-table"></table>
+<div id="toolbar">
+    <div class="form-inline" role="form">
+        <button id="btn_additem" type="button" class="btn  btn-success" onclick="addData()">
+            <span class="fa fa-plus" aria-hidden="true"></span>新增
+        </button>
+        <button class="btn btn-warning" onclick="BtchDeleteBook()">批量删除</button>
+    </div>
+</div>
+<!-- 模态框示例（Modal） -->
+<!-- <form action="" class="form-horizontal" role="form" id="form_data" style="margin: 20px;"> -->
+    <div class="modal fade" id="modalTable" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" id="modalDialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel">
+                        菜单编辑
+                    </h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal" role="form">
+                        <div class="form-group row">
+                            <label for="name" class="col-sm-3 control-label">菜单名称:</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="name" name="name" value="" placeholder="">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="id" class="col-sm-3 control-label" id="idLabel">菜单编号:</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" name="id" value="" id="id" placeholder="">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="fatherid" class="col-sm-3 control-label">父节点编号:</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" name="fatherid" value="" id="fatherid"
+                                    placeholder="">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="url" class="col-sm-3 control-label">链接地址:</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" name="url" value="" id="url" placeholder="">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="rolelevel" class="col-sm-3 control-label">权限等级:</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" name="rolelevel" value="" id="rolelevel"
+                                    placeholder="">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="icon" class="col-sm-3 control-label">菜单图标:</label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" name="icon" value="" id="icon" placeholder="">
+                            </div>
+                            <div class="col-sm-2" style="padding-top: 5px;">
+                                <a href="javascript:void(0)" onclick="openIcon()">选取</a>
+                            </div>
+                            <div class="col-sm-3" style="padding-top: 5px;">
+                                <a href="http://fontawesome.dashgame.com/" target="blank">更多图标</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                    </button>
+                    <button type="submit" class="btn btn-primary" id="btnSubmit" onclick="SendForm()">
+                        提交
+                    </button><span id="tip"> </span>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+<!-- </form> -->
+<div class="modal fade" id="iconModal" tabindex="-2" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" id="iconmodalDialog">
+        <div class="modal-content" style="background:darkseagreen;">
+            <!-- <div class="modal-header">
+                <h6 class="modal-title" id="myModalLabel">
+                    图标选取
+                </h6>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+            </div> -->
+            <div class="modal-body">
+                <span class="fa fa-send-o" onclick="iconPick(this)">&nbsp;</span>
+                <span class="fa fa-bar-chart" onclick="iconPick(this)">&nbsp;</span>
+                <span class="fa fa-edit" onclick="iconPick(this)">&nbsp;</span>
+                <span class="fa fa-address-book" onclick="iconPick(this)">&nbsp;</span>
+                <span class="fa fa-user-circle-o" onclick="iconPick(this)">&nbsp;</span>
+                <span class="fa fa-commenting-o" onclick="iconPick(this)">&nbsp;</span>
+                <span class="fa fa-edit" onclick="iconPick(this)">&nbsp;</span>
+                <span class="fa fa-copyright" onclick="iconPick(this)">&nbsp;</span>
+                <span class="fa fa-download" onclick="iconPick(this)">&nbsp;</span>
+                <span class="fa fa-exclamation-triangle" onclick="iconPick(this)">&nbsp;</span>
+                <span class="fa fa-feed" onclick="iconPick(this)">&nbsp;</span>
+                <span class="fa fa-folder-open" onclick="iconPick(this)">&nbsp;</span>
+                <span class="fa fa-gear" onclick="iconPick(this)">&nbsp;</span>
+                <span class="fa fa-location-arrow" onclick="iconPick(this)">&nbsp;</span>
+                <span class="fa fa-lock" onclick="iconPick(this)">&nbsp;</span>
+                <span class="fa fa-wrench" onclick="iconPick(this)">&nbsp;</span>
+                <!-- <span class="fa fa-spin fa-cog" onclick="iconPick(this)">&nbsp;</span>  -->
+                <span class="fa fa-spin fa-gear" onclick="iconPick(this)">&nbsp;</span>
+                <span class="fa fa-spin fa-refresh" onclick="iconPick(this)">&nbsp;</span>
+                <span class="fa fa-bar-chart" onclick="iconPick(this)">&nbsp;</span>
+                <span class="fa fa-pie-chart" onclick="iconPick(this)">&nbsp;</span>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+<script>
+    var $table = $('#data-table');
+
+    $(window).resize(function () {
+        //防止表头与表格不对齐
+        $table.bootstrapTable('resetView');
+    });
+
+    // modal居中
+    $('#modalTable').on('shown.bs.modal', function (e) {
+        // 关键代码，如没将modal设置为 block，则$modala_dialog.height() 为零
+        $(this).css('display', 'block');
+        var modalHeight = $(window).height() / 2 - $('#modalTable .modal-dialog').height() / 2;
+        $(this).find('.modal-dialog').css({
+            'margin-top': modalHeight
+        });
+    });
+    $('#iconModal').on('shown.bs.modal', function (e) {
+        // 关键代码，如没将modal设置为 block，则$modala_dialog.height() 为零
+        $(this).css('display', 'block');
+        var modalHeight = $(window).height() / 2 - $('#iconModal .modal-dialog').height() / 2;
+        $(this).find('.modal-dialog').css({
+            'margin-top': modalHeight
+        });
+    });
+
+    $(function () {
+        //使用严格模式
+        "use strict";
+        //表格初始化
+        tableInit();
+        $table.bootstrapTable('hideLoading');//隐藏加载
+
+        $("#modalDialog").draggable();//为模态对话框添加拖拽
+        $("#modalTable").css("overflow", "hidden");//禁止模态对话框的半透明背景滚动
+
+        $("#iconmodalDialog").draggable();//为模态对话框添加拖拽
+        $("#iconModal").css("overflow", "hidden");//禁止模态对话框的半透明背景滚动
+    })
+
+    function iconPick(box) {
+        $('#icon').val($(box).attr('class'));
+        $('#iconModal').modal('hide');
+    }
+    function openIcon() {
+        $('#iconModal').modal();
+    }
+    function tableInit() {
+        /**
+         * 初始化Table
+         */
+        //先销毁表格
+        $table.bootstrapTable('destroy');
+
+        //再初始化表格
+        $table.bootstrapTable({
+            //请求地址,此处数据为本地加载
+            url: "/table/menu",
+            //请求方式
+            method: "POST",
+            //请求内容类型
+            contentType: "application/x-www-form-urlencoded",
+            //当数据为 undefined 时显示的字符
+            undefinedText: "--",
+            //表格的类名称
+            // classes: "table-condensed",
+            //数据类型
+            dataType: "json",
+            //table高度：如果没有设置，表格自动根据记录条数觉得表格高度
+            height: '100%',
+            //是否显示行间隔色
+            striped: true,
+            //是否启用排序
+            sortable: true,
+            //排序方式
+            sortOrder: "asc",
+            //是否使用缓存
+            cache: false,
+            //每行的唯一标识
+            uniqueId: "id",
+            sidePagination: 'server',
+            idField: 'id',
+            //指定工具栏
+            toolbar: "#toolbar",
+            //显示刷新按钮
+            showRefresh: true,
+            //切换显示样式
+            showToggle: false,
+            //默认显示详细视图
+            cardView: false,
+            //是否显示搜索
+            search: false,
+            strictSearch: false,
+            //是否显示分页
+            pagination: false,
+            //是否启用点击选中行
+            clickToSelect: false,
+            //是否显示内容列下拉框。
+            showColumns: false,
+            //按钮样式
+            buttonsClass: 'btn',
+            //分页器class
+            iconSize: 'pager',
+            //查询条件
+            queryParams: queryParams,
+            //表头
+            columns: [{
+                // field: 'state',//id
+                checkbox: true,//checkbox
+                align: 'center',//对其方式
+                valign: 'middle'//对其方式
+            }, {
+                title: '名称',
+                field: 'name',//id
+                // checkbox: true,//checkbox
+                // align: 'center',//对其方式
+                // valign: 'middle'//对其方式
+            }, {
+                title: '编号',
+                field: 'id',
+                sortable: true,
+                align: 'center',
+                valign: 'middle'
+            }, {
+                title: '父节点编号',
+                field: 'fatherid',
+                sortable: true,
+                align: 'center',
+                valign: 'middle'
+            }, {
+                title: '链接地址',
+                field: 'url',
+                align: 'center',
+                valign: 'middle'
+            }, {
+                title: '权限等级',
+                field: 'rolelevel',
+                align: 'center',
+                valign: 'middle'
+            }, {
+                title: '图标',
+                field: 'icon',
+                align: 'center',
+                valign: 'middle'
+            }, {
+                title: '操作',
+                field: '',
+                align: 'center',
+                events: window.operateEvents,
+                formatter: genderOpt//如需操作行数据,直接添加formatter对应函数名参数分别为value, row, index
+            }],
+            treeShowField: 'name',
+            parentIdField: 'fatherid',
+            onLoadSuccess: function (res) {//可不写
+                //加载成功时
+                // console.log(res);
+                $table.treegrid({
+                    treeColumn: 1,
+                    // expanderExpandedClass: 'fa fa-minus',
+                    // expanderCollapsedClass: 'fa fa-plus',
+                    onChange: function () {
+                        $table.bootstrapTable('resetWidth');
+                    }
+                });
+            }, onLoadError: function (statusCode) {
+                return "加载失败了"
+            }, formatLoadingMessage: function () {
+                //正在加载
+                return "拼命加载中...";
+            }, formatNoMatches: function () {
+                //没有匹配的结果
+                return '无符合条件的记录';
+            }
+        })
+    }
+
+    //return还可以return字符串拼接
+    function genderOpt() {
+        /**
+         * 自定义列内容
+         */
+        return [
+            '<a class="trbtn-edit" href="javascript:void(0)" title="编辑">',
+            '<i class="fa fa-pencil"></i>',
+            '</a>  ',
+            '<a class="trbtn-remove" href="javascript:void(0)" title="删除">',
+            '<i class="fa fa-trash"></i>',
+            '</a>'
+        ].join('');
+    }
+    //操作事件建议卸载内部,防止第一次点击操作不生效
+    window.operateEvents = {
+        /**
+         * 注册操作按钮事件
+         */
+        'click .trbtn-edit': function (e, value, row, index) {
+            editData(row);
+        },
+        'click .trbtn-remove': function (e, value, row, index) {
+            delData(row.id);
+        }
+    };
+    //还不知该部分功能——大概是采用服务端分页时传递参数
+    function queryParams() {
+        var params = {};
+        $('#toolbar').find('input[name]').each(function () {
+            params[$(this).attr('name')] = $(this).val();
+        });
+        return params;
+    }
+    function refresh() {
+        /**
+         * 刷新表格数据
+         */
+        $table.bootstrapTable('refresh');
+        //$table.bootstrapTable('refresh'.{url:""});//刷新时调用接口防止表格无限销毁重铸时出现英文
+    }
+
+    //清除弹窗原数据
+    $("#modalTable").on("hidden.bs.modal", function () {
+        $(this).removeData("bs.modal");
+    });
+    // 显示一行数据的编辑界面
+    function editData(row) {//row为表格内一行的数据传值
+        console.log("修改页面");
+        $(".modal-title").html("菜单编辑");
+        $("#idLabel").removeAttr("style");
+        $("#id").removeAttr("style");
+        $("#id").val(row.id);
+        $("#id").attr("readonly", "true");
+        $("#name").val(row.name);
+        $("#name").removeAttr("readonly");
+        $("#fatherid").val(row.fatherid);
+        $("#fatherid").removeAttr("readonly");
+        $("#url").val(row.url);
+        $("#url").removeAttr("readonly");
+        $("#rolelevel").val(row.rolelevel);
+        $("#rolelevel").removeAttr("readonly");
+        $("#icon").val(row.icon);
+        $("#icon").removeAttr("readonly");
+        $("#btnSubmit").removeAttr("disabled");
+        $("#btnSubmit").attr("onclick", "SendForm()");
+        $('#modalTable').modal();
+    }
+    // 显示一行数据的编辑界面
+    function addData() {//row为表格内一行的数据传值
+        console.log("新增数据");
+        $(".modal-title").html("数据新增");
+        $("#idLabel").attr("style", "display:none");
+        $("#id").attr("style", "display:none");
+        $("#name").val("");
+        $("#name").removeAttr("readonly");
+        $("#fatherid").val("");
+        $("#fatherid").removeAttr("readonly");
+        $("#url").val("");
+        $("#url").removeAttr("readonly");
+        $("#rolelevel").val("");
+        $("#rolelevel").removeAttr("readonly");
+        $("#icon").val("");
+        $("#icon").removeAttr("readonly");
+        $("#btnSubmit").removeAttr("disabled");
+        $("#btnSubmit").attr("onclick", "addItem()");
+        $('#modalTable').modal();
+    }
+    // //提交按钮点击事件
+    // $("#btnSubmit").click(function(){
+    //     if($(".modal-title").html() == "数据新增")
+    //     {
+    //         addItem();
+    //     }
+    //     if($(".modal-title").html() == "菜单编辑")
+    //     {
+    //         SendForm();
+    //     }
+    // });
+    // 修改数据表单提交
+    function SendForm() {
+        var id = $("#id").val();
+        var name = $("#name").val();
+        var fatherid = $("#fatherid").val();
+        var url = $("#url").val();
+        var rolelevel = $("#rolelevel").val();
+        var icon = $("#icon").val();
+
+        var sendData = { "id": id, "name": name, "fatherid": fatherid, "url": url, "rolelevel": rolelevel, "icon": icon };
+        $.ajax({
+            url: '/table/menu/modify',
+            method: 'POST',
+            contentType: "application/x-www-form-urlencoded",
+            data: sendData,
+            //阻止深度序列化，向后台传送数组
+            traditional: true,
+            // async: false,//这里同步，请按实际需求设置
+            //成功
+            success: function (result, status) {
+                console.log(result);
+                if (status) {//操作成功
+                    /**
+                     * callback获取回调数据
+                     * @param {object} result 回调对象
+                     * @param {object} status 操作状态码
+                     */
+                     alert("修改成功");
+                     $('#modalTable').modal('hide');
+                    //刷新表格
+                    refresh();
+                } else {
+                    alert("修改失败");//操作失败
+                }
+            },
+            //请求错误
+            error: function (err, status) {
+                console.log(err);
+                console.log(status);
+                alert("修改请求错误");
+            }
+        });
+        // return false;   // 阻止表单默认提交
+    }
+    // 执行删除数据
+    function delData(strData) {
+        //多条数据转换
+        if (typeof strData == "array") {
+            strData = strData.join();
+        }
+        console.log(strData);
+        //确认操作
+        if (confirm('确定要删除用户编号为' + strData + '数据?')) {
+            console.log("OK");
+            console.log("删除数据");
+            //组织数据-转换
+            var sendData = { param: strData };
+            console.log(sendData);
+            $.ajax({
+                url: '/table/menu/delete',
+                method: 'POST',
+                contentType: "application/x-www-form-urlencoded",
+                data: sendData,
+                //阻止深度序列化，向后台传送数组
+                traditional: true,
+                // async: false,//这里同步，请按实际需求设置
+                //成功
+                success: function (result, status) {
+                    console.log(result);
+                    if (status) {//操作成功
+                        /**
+                         * callback获取回调数据
+                         * @param {object} result 回调对象
+                         * @param {object} status 操作状态码
+                         */
+                        alert("删除成功");
+                        //刷新表格
+                        refresh();
+                    } else {
+                        alert("删除失败");//操作失败
+                    }
+                },
+                //请求错误
+                error: function () {
+                    alert("删除请求错误");
+                }
+            });
+        };
+    }
+    // 新增一条数据
+    function addItem() {
+        // var id = $("#id").val();
+        var name = $("#name").val();
+        var fatherid = $("#fatherid").val();
+        var url = $("#url").val();
+        var rolelevel = $("#rolelevel").val();
+        var icon = $("#icon").val();
+
+        var sendData = { "name": name, "fatherid": fatherid, "url": url, "rolelevel": rolelevel, "icon": icon };
+        $.ajax({
+            url: '/table/menu/add',
+            method: 'POST',
+            contentType: "application/x-www-form-urlencoded",
+            data: sendData,
+            //阻止深度序列化，向后台传送数组
+            traditional: true,
+            // async: false,//这里同步，请按实际需求设置
+            //成功
+            success: function (result, status) {
+                console.log(result);
+                if (status) {//操作成功
+                    /**
+                     * callback获取回调数据
+                     * @param {object} result 回调对象
+                     * @param {object} status 操作状态码
+                     */
+                    alert("添加成功");
+                    $('#modalTable').modal('hide');
+                    //刷新表格
+                    refresh();
+                } else {
+                    alert("添加失败");//操作失败
+                }
+            },
+            //请求错误
+            error: function () {
+                alert("添加请求错误");
+            }
+        });
+        // return false;   // 阻止表单默认提交
+    }
+    //批量删除
+    function BtchDeleteBook() {
+        var opts = $('#data-table').bootstrapTable('getSelections');
+        if (opts == "") {
+            alert("请选择要删除的数据");
+        }
+        else {
+            var idArray = [];
+            var strData = [];
+            for (var i = 0; i < opts.length; i++) {
+                idArray.push(opts[i].id);
+                delData(opts[i].id);
+                strData.push({ "id": opts[i].name, "name": opts[i].name });
+            }
+            // if (confirm("确定删除用户编号 ：" + idArray + "吗？")) {
+            //     delData(strData);
+            // }
+        }
+    }    
+</script>
+<% include ../footer.html %>

@@ -62,7 +62,6 @@ app.use(function (req, res, next) {
 //   next();
 // })
 app.use('/users', usersRouter); // 即为为路径 /users 设置路由
-app.get('/examples/:project/:func', require('./examples'));
 
 app.use('/', indexRouter);  // 即为为路径 / 设置路由
 app.use('/home',indexRouter); // 即为为路径 /home 设置路由
@@ -70,14 +69,14 @@ app.use("/logout",indexRouter); // 即为为路径 /logout 设置路由
 app.use('/pswchange.html',indexRouter);
 
 app.use('/DetailView.html',indexRouter);
-app.use('/editable.html',indexRouter);
+// app.use('/editable.html',indexRouter);
 app.use('/edittable.html',indexRouter);
 app.use('/export.html',indexRouter);
-app.use('/Format.html',indexRouter);
-app.use('/jQueryshow.html',indexRouter);
-app.use('/Pagination.html',indexRouter);
-app.use('/Toolbar.html',indexRouter);
-app.use('/x-editable.html',indexRouter);
+app.use('/menu.html',indexRouter);
+// app.use('/jQueryshow.html',indexRouter);
+// app.use('/Pagination.html',indexRouter);
+// app.use('/Toolbar.html',indexRouter);
+// app.use('/x-editable.html',indexRouter);
 
 app.use('/ajax',ajaxRouter); // 即为为路径 /login 设置路由
 

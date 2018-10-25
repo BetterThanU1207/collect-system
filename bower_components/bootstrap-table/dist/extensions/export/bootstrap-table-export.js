@@ -30,7 +30,7 @@
     });
 
     $.extend($.fn.bootstrapTable.defaults.icons, {
-        export: 'glyphicon-export icon-share'
+        export: 'fa-share'
     });
 
     $.extend($.fn.bootstrapTable.locales, {
