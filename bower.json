@@ -21,7 +21,8 @@
     "tableexport.js": "^5.0.2",
     "jQuery": "^3.3.1",
     "jquery-treegrid": "^0.3.0",
-    "jquery-ui": "^1.12.1"
+    "jquery-ui": "^1.12.1",
+    "chart.js": "^2.7.3"
   },
   "authors": [
     "HuanZhang <705723683@qq.com>"

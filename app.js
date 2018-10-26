@@ -78,6 +78,8 @@ app.use('/menu.html',indexRouter);
 // app.use('/Toolbar.html',indexRouter);
 // app.use('/x-editable.html',indexRouter);
 
+app.use('/pie.html',indexRouter);
+
 app.use('/ajax',ajaxRouter); // 即为为路径 /login 设置路由
 
 app.use('/table',tableRouter);

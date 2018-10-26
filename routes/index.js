@@ -104,6 +104,9 @@ router.get('/menu.html', function (req, res, next) {
 // 	res.render('tables/x-editable', { title: '' });
 // });
 
+router.get('/pie.html', function (req, res, next) {
+	res.render('dashboard/pie', { title: '' });
+});
 
 /* GET logout page. */
 router.get("/logout", function (req, res) {    // 到达 /logout 路径则登出， session中user,error对象置空，并重定向到根路径
