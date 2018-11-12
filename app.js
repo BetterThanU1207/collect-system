@@ -78,7 +78,13 @@ app.use('/menu.html',indexRouter);
 // app.use('/Toolbar.html',indexRouter);
 // app.use('/x-editable.html',indexRouter);
 
+app.use('/bar.html',indexRouter);
+app.use('/dataset.html',indexRouter);
+app.use('/gauge.html',indexRouter);
+app.use('/line.html',indexRouter);
+app.use('/map.html',indexRouter);
 app.use('/pie.html',indexRouter);
+app.use('/radar.html',indexRouter);
 
 app.use('/ajax',ajaxRouter); // 即为为路径 /login 设置路由
 

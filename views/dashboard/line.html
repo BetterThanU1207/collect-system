@@ -1,0 +1,180 @@
+<% include ../header.html %>
+<script src="/javascripts/echarts.min.js"></script>
+<div class="container-fluid">
+    <h3>折线图集</h3>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="echarts" id="container1" style="width: 100%;height: 300px;"></div>
+        </div>
+        <div class="col-md-6">
+            <div class="echarts" id="container2" style="width: 100%;height: 300px;"></div>
+        </div>        
+    </div>
+    <div class="row">        
+        <div class="col-md-6">
+            <div class="echarts" id="container3" style="width: 100%;height: 300px;"></div>
+        </div>
+        <div class="col-md-6">
+            <div class="echarts" id="container4" style="width: 100%;height: 300px;"></div>
+        </div>
+    </div>
+</div>
+<script>
+    //初始化echarts实例
+    var myChart1 = echarts.init(document.getElementById("container1"));
+    //指定图表配置项和数据 
+    var option1 = {
+        title: {
+            text: "基础折线"
+        },
+        xAxis: {
+            type: 'category',
+            data: ["水表", "电表", "热表", "燃气表"]
+        },
+        yAxis: {
+            type: 'value'
+        },
+        series: [{
+            name: "销量",
+            type: "line",
+            data: [190, 150, 100, 60]
+        }]
+    };
+    //使用配置项和数据显示图表
+    myChart1.setOption(option1);
+
+    //初始化echarts实例
+    var myChart2 = echarts.init(document.getElementById("container2"));
+    //指定图表配置项和数据 
+    var option2 = {
+        title: {
+            text: "区域图"
+        },
+        xAxis: {
+            type: 'category',
+            boundaryGap: false,
+            data: ["水表", "电表", "热表", "燃气表"]
+        },
+        yAxis: {
+            type: 'value'
+        },
+        series: [{
+            name: "销量",
+            type: "line",
+            data: [190, 150, 100, 60],
+            areaStyle: {}
+        }]
+    };
+    //使用配置项和数据显示图表
+    myChart2.setOption(option2);
+
+    //初始化echarts实例
+    var myChart3 = echarts.init(document.getElementById("container3"));
+    //指定图表配置项和数据 
+    var option3 = {
+        title: {
+            text: "平滑曲线"
+        },
+        xAxis: {
+            data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+        },
+        yAxis: {
+            type: 'value'
+        },
+        series: [{
+            name: "销量",
+            type: "line",
+            data: [820, 932, 901, 934, 1290, 1330, 1320],
+            smooth: true
+        }]
+    };
+    //使用配置项和数据显示图表
+    myChart3.setOption(option3);
+
+    //初始化echarts实例
+    var myChart4 = echarts.init(document.getElementById("container4"));
+    //指定图表配置项和数据 
+    var option4 = {
+        title: {
+            text: "堆叠区域图"
+        },
+        tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+                type: 'cross',
+                label: {
+                    backgroundColor: '#6a7985'
+                }
+            }
+        },
+        legend: {
+            type: 'scroll',
+            data: ['邮件营销', '联盟广告', '视频广告', '直接访问', '搜索引擎']
+        },
+        toolbox: {
+            feature: {
+                saveAsImage: {}
+            }
+        },
+        grid: {
+            left: '0%',
+            right: '3%',
+            bottom: '10%',
+            containLabel: 'false'
+        },
+        xAxis: {
+            type: 'category',
+            data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+            boundaryGap: false
+        },
+        yAxis: {
+            type: 'value'
+        },
+        series: [
+            {
+                name: "邮件营销",
+                type: "line",
+                stack: '总量',
+                areaStyle: {},
+                data: [120, 132, 101, 134, 90, 230, 210],
+            },
+            {
+                name: '联盟广告',
+                type: 'line',
+                stack: '总量',
+                areaStyle: {},
+                data: [220, 182, 191, 234, 290, 330, 310]
+            },
+            {
+                name: '视频广告',
+                type: 'line',
+                stack: '总量',
+                areaStyle: {},
+                data: [150, 232, 201, 154, 190, 330, 410]
+            },
+            {
+                name: '直接访问',
+                type: 'line',
+                stack: '总量',
+                areaStyle: { normal: {} },
+                data: [320, 332, 301, 334, 390, 330, 320]
+            },
+            {
+               name: '搜索引擎',
+               type: 'line',
+               stack: '总量',
+               label: {
+                   normal: {
+                       show: true,
+                       position: 'top'
+                   }
+               },
+               areaStyle: {normal: {}},
+               data:[820, 932, 901, 934, 1290, 1330, 1320]
+            }
+        ]
+    };
+    //使用配置项和数据显示图表
+    myChart4.setOption(option4);    
+</script>
+<% include ../footer.html %>

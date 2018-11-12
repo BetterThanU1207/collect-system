@@ -1,0 +1,161 @@
+<% include ../header.html %>
+<!-- 背景使用百度地图 -->
+<script src="/javascripts/echarts.js"></script>
+<script src="/javascripts/bmap.min.js"></script>
+<script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=ZUONbpqGBsYGXNIYHicvbAbM"></script>
+
+<div class="container-fluid">
+    <h3>饼图集合</h3>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="echarts" id="map" style="width: 100%;height: 300px;"></div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    var cityname = "济宁市";
+    var bdMap;
+    var blist = [];
+    var districtLoading = 0;
+    var myData = [
+        { name: '任城区', value: [116.554466, 35.493731, 90] },
+        { name: '汶上县', value: [116.505437, 35.717055, 90] },
+        { name: '嘉祥县', value: [116.34861, 35.413257, 90] },
+        { name: '金乡县', value: [116.318526, 35.07257, 90] },
+        { name: '梁山县', value: [116.102618, 35.808063, 90] },
+        { name: '鱼台县', value: [116.657394, 35.017888, 90] },
+        { name: '兖州区', value: [116.790119, 35.557953, 90] },
+        { name: '邹城区', value: [117.987604, 35.402397, 90] },
+        { name: '曲阜区', value: [117.055017, 35.567233, 90] },
+        { name: '泗水县', value: [117.257426, 35.6706, 90] },
+        { name: '微山县', value: [117.135409, 34.813314, 90] },
+    ];
+    var bmapChart = echarts.init(document.getElementById('map')); //echart 对象
+    var mapOption = GetOption(cityname, cityname);
+    bmapChart.setOption(mapOption);
+
+    var ecModel = bmapChart._model;
+    ecModel.eachComponent('bmap', function (bmapModel) {
+        if (bdMap == null) {
+            bdMap = bmapModel.__bmap;//由echart实例获取百度地图的实例
+        }
+    });
+    bdMap.disableDoubleClickZoom();//禁止双击缩放
+    bdMap.addControl(new BMap.NavigationControl());//缩放控件
+    bdMap.addControl(new BMap.ScaleControl());//比例尺
+    addDistrict(cityname);
+
+    function convertData(name) {
+        var res = [];
+        for (var i = 0; i < bdhousedata.length; i++) {
+
+            var dataItem = bdhousedata[i];
+            if (dataItem.value[3] == name) {
+                res.push(dataItem);
+            }
+        }
+        return res;
+    }
+
+    function GetOption(na, city) {
+        var geoitemstyle = {
+            normal: {
+                areaColor: '#031525',
+                borderColor: '#3B5077',
+            },
+            emphasis: {
+                areaColor: '#00CDCD',
+            }
+        };
+        var opt = {
+            bmap: {
+                center: [116.5938140877, 35.4202305409],// 中心位置坐标
+                zoom: 8,
+                show: true,
+                map: na,
+                label: {
+                    normal: {
+                        show: true,
+                        color: '#FFC125',
+                        fontSize: 13.9,
+                    },
+                    emphasis: {
+                        color: '#FFC125',
+                        fontSize: 13.9,
+                        show: true,
+                    }
+                },
+                right: 300,
+                roam: true,
+
+            },
+            backgroundColor: '#286895',
+
+            series: [
+
+            ],
+        }
+        return opt;
+    }
+
+    function addDistrict(districtName) {
+        //使用计数器来控制加载过程
+        districtLoading++;
+        var bdary = new BMap.Boundary();
+        bdary.get(districtName, function (rs) {       //获取行政区域
+            var count = rs.boundaries.length; //行政区域的点有多少个
+            if (count === 0) {
+                alert('未能获取当前输入行政区域');
+                return;
+            }
+            for (var i = 0; i < count; i++) {
+                blist.push({ points: rs.boundaries[i], name: districtName });
+            };
+            //加载完成区域点后计数器-1
+            districtLoading--;
+            if (districtLoading == 0) {
+                //全加载完成后画端点
+                drawBoundary();
+            }
+        });
+    }
+    function drawBoundary() {
+        //包含所有区域的点数组
+        var pointArray = [];
+
+        var pNW = { lat: 59.0, lng: 73.0 }
+        var pNE = { lat: 59.0, lng: 136.0 }
+        var pSE = { lat: 3.0, lng: 136.0 }
+        var pSW = { lat: 3.0, lng: 73.0 }
+        //向数组中添加一次闭合多边形，并将西北角再加一次作为之后画闭合区域的起点
+        var pArray = [];
+        pArray.push(pNW);
+        pArray.push(pSW);
+        pArray.push(pSE);
+        pArray.push(pNE);
+        pArray.push(pNW);
+        //循环添加各闭合区域
+        for (var i = 0; i < blist.length; i++) {
+            //添加多边形层并显示
+            var ply = new BMap.Polygon(blist[i].points, { strokeWeight: 3, strokeColor: "#EEAD0E", fillOpacity: 0.01, fillColor: " #ffffff", enableClicking: true }); //建立多边形覆盖物
+            ply.name = blist[i].name;
+            bdMap.addOverlay(ply);
+
+            //将点增加到视野范围内
+            var path = ply.getPath();
+            pointArray = pointArray.concat(path);
+            //将闭合区域加到遮蔽层上，每次添加完后要再加一次西北角作为下次添加的起点和最后一次的终点
+            pArray = pArray.concat(path);
+            pArray.push(pArray[0]);
+        }
+
+        //添加遮蔽层
+        var plyall = new BMap.Polygon(pArray, { strokeOpacity: 0.0000001, strokeColor: "#000000", strokeWeight: 0.00001, fillColor: "#05102C", fillOpacity: 1 }); //建立多边形覆盖物
+        bdMap.addOverlay(plyall);
+    }
+
+
+</script>
+<% include ../footer.html %>

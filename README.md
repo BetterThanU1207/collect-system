@@ -1,3 +1,8 @@
+Thanks:
+ECharts: A Declarative Framework for Rapid Construction of Web-based Visualization
+Deqing Li, Honghui Mei, Yi Shen, Shuang Su, Wenli Zhang, Junting Wang, Ming Zu, Wei Chen.
+Visual Informatics, 2018 [PDF]
+
 # collect-system
 集抄系统
 bootstrap + nodejs express + SQL
@@ -10,3 +15,7 @@ bootstrap + nodejs express + SQL
 2018-10-26 15:52
 bower chart.js 但是未使用次组件实现仪表
 下载echart.js放在public下，并实现实心饼图。
+2018-11-12 14:51
+新增功能：饼图、曲线图、柱图、数据集（曲线、饼图共享一个数据源）、仪表盘
+新增文件：public下新增echartsdata，bmap.js
+文件改动：分离header.html，分离包含的bootstrap table的引用文件，不至于echart额外引用。

@@ -104,8 +104,26 @@ router.get('/menu.html', function (req, res, next) {
 // 	res.render('tables/x-editable', { title: '' });
 // });
 
+router.get('/bar.html', function (req, res, next) {
+	res.render('dashboard/bar', { title: '' });
+});
+router.get('/dataset.html', function (req, res, next) {
+	res.render('dashboard/dataset', { title: '' });
+});
+router.get('/gauge.html', function (req, res, next) {
+	res.render('dashboard/gauge', { title: '' });
+});
+router.get('/line.html', function (req, res, next) {
+	res.render('dashboard/line', { title: '' });
+});
+router.get('/map.html', function (req, res, next) {
+	res.render('dashboard/map', { title: '' });
+});
 router.get('/pie.html', function (req, res, next) {
 	res.render('dashboard/pie', { title: '' });
+});
+router.get('/radar.html', function (req, res, next) {
+	res.render('dashboard/radar', { title: '' });
 });
 
 /* GET logout page. */

@@ -1,0 +1,500 @@
+<% include ../header.html %>
+<script src="/javascripts/echarts.min.js"></script>
+<div class="container-fluid">
+    <h3>柱图图集</h3>
+    <div class="row" style="height: 300px; margin: 0">
+        <div class="col-md-6">
+            <div class="echarts" id="container1" style="height: 100%"></div>
+        </div>
+        <div class="col-md-6">
+            <div class="echarts" id="container2" style="height: 100%"></div>
+        </div>
+    </div>
+    <div class="row" style="height: 300px; margin: 0">
+        <div class="col-md-6">
+            <div class="echarts" id="container3" style="height: 100%"></div>
+        </div>
+        <div class="col-md-6">
+            <div class="echarts" id="container4" style="height: 100%"></div>
+        </div>
+    </div>
+    <div class="row" style="height: 300px; margin: 0">
+        <div class="col-md-6">
+            <div class="echarts" id="container5" style="height: 100%"></div>
+        </div>
+        <div class="col-md-6">
+            <div class="echarts" id="container6" style="height: 100%"></div>
+        </div>
+    </div>
+</div>
+<script>
+    //初始化echarts实例
+    var myChart1 = echarts.init(document.getElementById("container1"));
+    //指定图表配置项和数据 
+    var option1 = {
+        title: {
+            text: "基础柱图"
+        },
+        xAxis: {
+            data: ["水表", "电表", "热表", "燃气表"]
+        },
+        yAxis: {
+            type: 'value'
+        },
+        series: [{
+            type: "bar",
+            barWidth: '30%',
+            data: [190, 150, 100, 60]
+        }]
+    };
+    //使用配置项和数据显示图表
+    myChart1.setOption(option1);
+
+    //初始化echarts实例
+    var myChart2 = echarts.init(document.getElementById("container2"));
+    //指定图表配置项和数据 
+    var option2 = {
+        color: ['#3398DB'],
+        tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+                type: 'shadow'
+            }
+        },
+        title: {
+            text: "基础柱图2"
+        },
+        yAxis: {
+            type: 'category',
+            data: ["水表", "电表", "热表", "燃气表"],
+            axisTick: {
+                alignWithLabel: true
+            }
+        },
+        xAxis: {
+            type: 'value'
+        },
+        series: [{
+            name: '销量',
+            type: "bar",
+            barWidth: '30%',
+            data: [190, 150, 100, 60]
+        }]
+    };
+    //使用配置项和数据显示图表
+    myChart2.setOption(option2);
+
+    //初始化echarts实例
+    var dataAxis = ["水表", "电表", "热表", "燃气表", "水表", "电表", "热表", "燃气表", "水表", "电表", "热表", "燃气表"];
+    var data = [220, 182, 191, 234, 290, 330, 310, 123, 442, 321, 90, 149, 210, 122, 133, 334, 198, 123, 125, 220];
+    var yMax = 500;
+    var dataShadow = [];
+    for (var i = 0; i < data.length; i++) {
+        dataShadow.push(yMax);
+    }
+    var myChart3 = echarts.init(document.getElementById("container3"));
+    //指定图表配置项和数据 
+    var option3 = {
+        title: {
+            text: "特性示例：渐变色 阴影 点击缩放"
+        },
+        xAxis: {
+            data: dataAxis,
+            axisLabel: {
+                inside: true,
+                textStyle: {
+                    color: '#fff'
+                }
+            },
+            axisTick: {
+                show: false
+            },
+            axisLine: {
+                show: false
+            },
+            z: 10
+        },
+        yAxis: {
+            axisLabel: {
+                textStyle: {
+                    color: '#999'
+                }
+            },
+            axisTick: {
+                show: false
+            },
+            axisLine: {
+                show: false
+            }
+        },
+        dataZoom: [
+            {
+                type: 'inside'
+            }
+        ],
+        series: [
+            {
+                //for shadow
+                type: 'bar',
+                itemStyle: {
+                    normal: { color: 'rgba(0, 0, 0, 0.05)' }
+                },
+                barGap: '-100%',
+                barCategoryGap: '40%',
+                data: dataShadow,
+                animation: false
+            },
+            {
+                type: "bar",
+                barWidth: '30%',
+                itemStyle: {
+                    normal: {
+                        color: new echarts.graphic.LinearGradient(
+                            0, 0, 0, 1,
+                            [
+                                { offset: 0, color: '#83bff6' },
+                                { offset: 0.5, color: '#188df0' },
+                                { offset: 1, color: '#188df0' }
+                            ]
+                        )
+                    },
+                    emphasis: {
+                        color: new echarts.graphic.LinearGradient(
+                            0, 0, 0, 1,
+                            [
+                                { offset: 0, color: '#2378f7' },
+                                { offset: 0.7, color: '#2378f7' },
+                                { offset: 1, color: '#83bff6' }
+                            ]
+                        )
+                    }
+                },
+                data: [190, 150, 100, 60, 190, 150, 100, 60, 190, 150, 100, 60]
+            }
+        ]
+    };
+    //实现点击柱图实现缩放
+    var zoomSize = 6;
+    myChart3.on('click', function (params) {
+        console.log(dataAxis[Math.max(params.dataIndex - zoomSize / 2, 0)]);
+        myChart3.dispatchAction({
+            type: 'dataZoom',
+            startValue: dataAxis[Math.max(params.dataIndex - zoomSize / 2, 0)],
+            endValue: dataAxis[Math.min(params.dataIndex + zoomSize / 2, data.length - 1)]
+        });
+    });
+    //使用配置项和数据显示图表
+    myChart3.setOption(option3);
+
+    //初始化echarts实例
+    var myChart4 = echarts.init(document.getElementById("container4"));
+    //不能正确显示controls面板
+    var app = {};
+    //指定图表配置项和数据 
+    var posList = [
+        'left', 'right', 'top', 'bottom',
+        'inside',
+        'insideTop', 'insideLeft', 'insideRight', 'insideBottom',
+        'insideTopLeft', 'insideTopRight', 'insideBottomLeft', 'insideBottomRight'
+    ];
+    app.configParameters = {
+        rotate: {
+            min: -90,
+            max: 90
+        },
+        align: {
+            options: {
+                left: 'left',
+                center: 'center',
+                right: 'right'
+            }
+        },
+        verticalAlign: {
+            options: {
+                top: 'top',
+                middle: 'middle',
+                bottom: 'bottom'
+            }
+        },
+        position: {
+            options: echarts.util.reduce(posList, function (map, pos) {
+                map[pos] = pos;
+                return map;
+            }, {})
+        },
+        distance: {
+            min: 0,
+            max: 100
+        }
+    };
+    app.config = {
+        rotate: 90,
+        align: 'left',
+        verticalAlign: 'middle',
+        position: 'insideBottom',
+        distance: 15,
+        onChange: function () {
+            var labelOption = {
+                normal: {
+                    rotate: app.config.rotate,
+                    align: app.config.align,
+                    verticalAlign: app.config.verticalAlign,
+                    position: app.config.position,
+                    distance: app.config.distance
+                }
+            };
+            myChart4.setOption({
+                series: [
+                    { label: labelOption },
+                    { label: labelOption },
+                    { label: labelOption },
+                    { label: labelOption }
+                ]
+            });
+        }
+    };
+    var labelOption = {
+        normal: {
+            show: true,
+            rotate: app.config.rotate,
+            align: app.config.align,
+            verticalAlign: app.config.verticalAlign,
+            position: app.config.position,
+            distance: app.config.distance,
+            formatter: '{c} {name|{a}}',
+            fontSize: 16,
+            rich: {
+                name: {
+                    textBorderColor: '#fff'
+                }
+            }
+        }
+    };
+    var option4 = {
+        color: ['#003366', '#006699', '#4cabce', '#e5323e'],
+        tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+                type: 'shadow'
+            }
+        },
+        title: {
+            text: "并列柱图"
+        },
+        legend: {
+            data: ["水表", "电表", "热表", "燃气表"]
+        },
+        toolbox: {
+            show: true,
+            orient: 'horizontal',
+            left: 'right',
+            top: 'top',
+            feature: {
+                mark: { show: true },
+                dataView: { show: true, readOnly: false },
+                magicType: { show: true, type: ['line', 'bar', 'stack', 'tiled'] },
+                restore: { show: true },
+                saveAsImage: { show: true }
+            }
+        },
+        calculable: true,
+        xAxis: {
+            type: 'category',
+            data: ["水表", "电表", "热表", "燃气表"],
+            axisTick: {
+                show: false
+            }
+        },
+        yAxis: {
+            type: 'value'
+        },
+        series: [
+            {
+                name: '水表',
+                type: "bar",
+                barGap: 0,
+                label: labelOption,
+                // barWidth: '30%',
+                data: [190, 150, 100, 60]
+            },
+            {
+                name: '电表',
+                type: 'bar',
+                label: labelOption,
+                data: [220, 182, 191, 234]
+            },
+            {
+                name: '热表',
+                type: 'bar',
+                label: labelOption,
+                data: [150, 232, 201, 154]
+            },
+            {
+                name: '燃气表',
+                type: 'bar',
+                label: labelOption,
+                data: [98, 77, 101, 99]
+            }
+        ]
+    };
+    //使用配置项和数据显示图表
+    if (option4 && typeof option4 === "object") {
+        myChart4.setOption(option4, true);
+    }
+
+    //初始化echarts实例
+    var myChart5 = echarts.init(document.getElementById("container5"));
+    //指定图表配置项和数据 
+    var option5 = {
+        title: {
+            text: "堆叠柱图"
+        },
+        tooltip: {
+            trigger: 'axis',
+            axisPointer: {            // 坐标轴指示器，坐标轴触发有效
+                type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+            }
+        },
+        legend: {
+            data: ['直接访问', '邮件营销', '联盟广告', '视频广告', '搜索引擎']
+        },
+        grid: {
+            left: '3%',
+            right: '4%',
+            bottom: '3%',
+            containLabel: true
+        },
+        xAxis: {
+            type: 'value'
+        },
+        yAxis: {
+            type: 'category',
+            data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
+        },
+        series: [
+            {
+                name: '直接访问',
+                type: 'bar',
+                stack: '总量',
+                label: {
+                    normal: {
+                        show: true,
+                        position: 'insideRight'
+                    }
+                },
+                data: [320, 302, 301, 334, 390, 330, 320]
+            },
+            {
+                name: '联盟广告',
+                type: 'bar',
+                stack: '总量',
+                label: {
+                    normal: {
+                        show: true,
+                        position: 'insideRight'
+                    }
+                },
+                data: [220, 182, 191, 234, 290, 330, 310]
+            },
+            {
+                name: '视频广告',
+                type: 'bar',
+                stack: '总量',
+                label: {
+                    normal: {
+                        show: true,
+                        position: 'insideRight'
+                    }
+                },
+                data: [150, 212, 201, 154, 190, 330, 410]
+            },
+            {
+                name: '搜索引擎',
+                type: 'bar',
+                stack: '总量',
+                label: {
+                    normal: {
+                        show: true,
+                        position: 'insideRight'
+                    }
+                },
+                data: [820, 832, 901, 934, 1290, 1330, 1320]
+            }
+        ]
+    };
+    //使用配置项和数据显示图表
+    myChart5.setOption(option5);
+
+    //初始化echarts实例
+    var myChart6 = echarts.init(document.getElementById("container6"));
+    //指定图表配置项和数据 
+    var option6 = {
+        title: {
+            text: "折柱混合"
+        },
+        tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+                type: 'cross',
+                crossStyle: {
+                    color: '#f00'
+                }
+            }
+        },
+        legend: {
+            data: ['蒸发量', '降水量', '平均温度']
+        },
+        xAxis: [
+            {
+                type: 'category',
+                data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
+                axisPointer: {
+                    type: 'shadow'
+                }
+            }
+        ],
+        yAxis: [
+            {
+                type: 'value',
+                name: '水量',
+                min: 0,
+                max: 250,
+                interval: 50,
+                axisLabel: {
+                    formatter: '{value} ml'
+                }
+            },
+            {
+                type: 'value',
+                name: '温度',
+                min: 0,
+                max: 25,
+                interval: 5,
+                axisLabel: {
+                    formatter: '{value} °C'
+                }
+            }
+        ],
+        series: [
+            {
+                name: '蒸发量',
+                type: 'bar',
+                data: [2.0, 4.9, 7.0, 23.2, 25.6, 76.7, 135.6, 162.2, 32.6, 20.0, 6.4, 3.3]
+            },
+            {
+                name: '降水量',
+                type: 'bar',
+                data: [2.6, 5.9, 9.0, 26.4, 28.7, 70.7, 175.6, 182.2, 48.7, 18.8, 6.0, 2.3]
+            },
+            {
+                name: '平均温度',
+                type: 'line',
+                yAxisIndex: 1,
+                data: [2.0, 2.2, 3.3, 4.5, 6.3, 10.2, 20.3, 23.4, 23.0, 16.5, 12.0, 6.2]
+            }
+        ]
+    };
+    //使用配置项和数据显示图表
+    myChart6.setOption(option6);
+</script>
+<% include ../footer.html %>
