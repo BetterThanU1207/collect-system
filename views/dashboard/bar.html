@@ -28,6 +28,9 @@
     </div>
 </div>
 <script>
+    var myData = [];
+    var myName = [];
+    
     //初始化echarts实例
     var myChart1 = echarts.init(document.getElementById("container1"));
     //指定图表配置项和数据 
@@ -36,7 +39,7 @@
             text: "基础柱图"
         },
         xAxis: {
-            data: ["水表", "电表", "热表", "燃气表"]
+            data: myName
         },
         yAxis: {
             type: 'value'
@@ -44,11 +47,40 @@
         series: [{
             type: "bar",
             barWidth: '30%',
-            data: [190, 150, 100, 60]
+            data: myData
         }]
     };
+    $.ajax({
+        url: '/dashboard/bar',
+        method: 'POST',
+        contentType: "application/x-www-form-urlencoded",
+        // data: sendData,
+        dataType: "json",
+        //阻止深度序列化，向后台传送数组
+        traditional: true,
+        // async: false,//这里同步，请按实际需求设置
+        //成功
+        success: function (result, status) {
+            console.log(result);
+            if (status) {//操作成功
+                for (var i = 0; i < result.length; i++) {
+                    myData.push(result[i].data);
+                    myName.push(result[i].name);
+                };
+                myChart1.setOption(option1);//如果不把该设置放在ajax里，异步取数会导致设置完毕后数据刚取过来
+            } else {
+                alert("错误：加载数据失败！");//操作失败
+            }
+        },
+        //请求错误
+        error: function () {
+            alert("错误：加载数据失败！");
+        }
+    });
+    console.log(myData);
+    console.log(myName);
     //使用配置项和数据显示图表
-    myChart1.setOption(option1);
+   
 
     //初始化echarts实例
     var myChart2 = echarts.init(document.getElementById("container2"));

@@ -15,7 +15,7 @@
     //初始化echart实例
     var myChart = echarts.init(document.getElementById('container'));
     setTimeout(function () {
-        option = {
+        var option = {
             legend: {},
             tooltip: {
                 trigger: 'axis',
@@ -30,14 +30,14 @@
                     ['其他', 55.2, 67.1, 69.2, 72.4, 53.9, 39.1]
                 ]
             },
-            xAxis: {type: 'category'},
-            yAxis: {gridIndex: 0},
-            grid: {top: '55%'},
+            xAxis: { type: 'category' },
+            yAxis: { gridIndex: 0 },
+            grid: { top: '55%' },
             series: [
-                {type: 'line', smooth: true, seriesLayoutBy: 'row'},
-                {type: 'line', smooth: true, seriesLayoutBy: 'row'},
-                {type: 'line', smooth: true, seriesLayoutBy: 'row'},
-                {type: 'line', smooth: true, seriesLayoutBy: 'row'},
+                { type: 'line', smooth: true, seriesLayoutBy: 'row' },
+                { type: 'line', smooth: true, seriesLayoutBy: 'row' },
+                { type: 'line', smooth: true, seriesLayoutBy: 'row' },
+                { type: 'line', smooth: true, seriesLayoutBy: 'row' },
                 {
                     type: 'pie',
                     id: 'pie',
@@ -72,10 +72,10 @@
                 });
             }
         });
-        myChart.setOption(option);
-    });
-    if (option && typeof option === "object") {
+        if (option && typeof option === "object") {
         myChart.setOption(option, true);
     }
+    });
+    
 </script>
 <% include ../footer.html %>

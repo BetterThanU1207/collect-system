@@ -3,7 +3,7 @@ var dbconf = {
     password: '12070413',
     server: '192.168.233.182',
     database: 'MyTest',
-    port: 1207,
+    port: 5010,
     options: {
     encrypt: false // Use this if you're on Windows Azure
     },

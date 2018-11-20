@@ -1,0 +1,143 @@
+<% include ../header.html %>
+<script src="/javascripts/echarts.min.js"></script>
+<div class="container-fluid">
+    <h3>柱图图集</h3>
+    <div class="row" style="height: 1000px; margin: 0">
+        <div class="col-md-6">
+            <div class="echarts" id="container1" style="height: 100%"></div>
+        </div>
+        <div class="col-md-6">
+            <div class="echarts" id="container2" style="height: 100%"></div>
+        </div>
+    </div>
+</div>
+<script>
+    var myChart1 = echarts.init(document.getElementById('container1'));
+    var option1 = {
+        title: {
+            text: '基础雷达图'
+        },
+        legend: {},
+        radar: {
+            name: {
+                textStyle: {
+                    color: '#fff',
+                    backgroundColor: '#999',
+                    borderRadius: 3,
+                    padding: [3, 5]
+                }
+            },
+            indicator: [
+                { name: '销售', max: 6500 },
+                { name: '管理', max: 16000 },
+                { name: '技术', max: 30000 },
+                { name: '客服', max: 38000 },
+                { name: '研发', max: 52000 },
+                { name: '市场', max: 25000 }
+            ]
+        },
+        series: [
+            {
+                name: '预算VS开销',
+                type: 'radar',
+                data: [
+                    {
+                        value: [4300, 10000, 28000, 35000, 50000, 19000],
+                        name: '预算分配'
+                    },
+                    {
+                        value: [5000, 14000, 28000, 31000, 42000, 21000],
+                        name: '实际开销'
+                    }
+                ]
+            }
+        ]
+    };
+    if (option1 && typeof option1 === "object") {
+        myChart1.setOption(option1, true);
+    }
+
+    var myChart2 = echarts.init(document.getElementById('container2'));
+    var option2 = {
+        title: {
+            text: '圆形雷达图'
+        },
+        radar: {
+            name: {
+                formatter: '【{value}】',
+                textStyle: {
+                    color: '#72ACD1'
+                }
+            },
+            center: ['50%', '50%'],
+            radius: 220,
+            startAngle: 90,
+            splitNumber: 4,
+            shape: 'circle',
+            indicator: [
+                { text: '指标一' },
+                { text: '指标二' },
+                { text: '指标三' },
+                { text: '指标四' },
+                { text: '指标五' }
+            ],
+            splitArea: {
+                areaStyle: {
+                    color: ['rgba(114, 172, 209, 0.2)', 'rgba(114, 172, 209, 0.4)', 'rgba(114, 172, 209, 0.6)',
+                        'rgba(114, 172, 209, 0.8)', 'rgba(114, 172, 209, 1)'],
+                    shadowColor: 'rgba(0, 0, 0, 0.3)',
+                    shadowBlur: 10
+                }
+            },
+            axisLine: {
+                lineStyle: {
+                    color: 'rgba(255, 255, 255, 0.5)'
+                }
+            },
+            splitLine: {
+                lineStyle: {
+                    color: 'rgba(255, 255, 255, 0.5)'
+                }
+            }
+        },
+        series: [
+            {
+                name: '指标',
+                type: 'radar',
+                itemStyle: {
+                    emphasis: {
+                        lineStyle: {
+                            width: 4
+                        }
+                    }
+                },
+                data: [
+                    {
+                        value: [100, 8, 0.40, -80, 2000],
+                        name: '指标',
+                        symbol: 'rect',
+                        symbolSize: 5,
+                        lineStyle: {
+                            normal: {
+                                type: 'dashed'
+                            }
+                        }
+                    },
+                    {
+                        value: [60, 5, 0.30, -100, 1500],
+                        name: '图二',
+                        areaStyle: {
+                            normal: {
+                                color: 'rgba(255, 255, 255, 0.5)'
+                            }
+                        }
+                    }
+                ]
+            }
+        ]
+    };
+    if (option2 && typeof option2 === "object") {
+        myChart2.setOption(option2, true);
+    }
+</script>
+<% include ../footer.html %>

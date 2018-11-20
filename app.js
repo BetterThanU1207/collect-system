@@ -12,6 +12,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var ajaxRouter = require('./routes/ajax');
 var tableRouter = require('./routes/table');
+var dashboardRouter = require('./routes/dashboard');
 
 var app = express();
 
@@ -89,6 +90,8 @@ app.use('/radar.html',indexRouter);
 app.use('/ajax',ajaxRouter); // 即为为路径 /login 设置路由
 
 app.use('/table',tableRouter);
+
+app.use('/dashboard',dashboardRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
