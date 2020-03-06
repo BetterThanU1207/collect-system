@@ -91,6 +91,9 @@ router.get('/export.html', function (req, res, next) {
 router.get('/menu.html', function (req, res, next) {
 	res.render('tables/menu', { title: '' });
 });
+router.get('/collectdata.html', function (req, res, next) {
+	res.render('tables/collectdata', { title: '' });
+});
 // router.get('/jQueryshow.html', function (req, res, next) {
 // 	res.render('tables/jQueryshow', { title: '' });
 // });
